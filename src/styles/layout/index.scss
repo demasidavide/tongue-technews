@@ -1,0 +1,30 @@
+@use '../abstract/variables';
+
+html,body{
+    margin: 0;
+    background-color: variables.$nd-color;
+    width: 100vw;
+    height: 100vh;
+    
+}
+.logo{
+    width: 100%;
+    
+}
+.navbar{
+    background-color: variables.$bg-color; 
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    >a{
+        text-decoration: none;
+        color: variables.$footer-color;
+        font-weight: bold;
+        font-family: variables.$title;
+
+    }
+    >.selected{
+        border-bottom: solid 3px variables.$btn-color;
+    }
+}
