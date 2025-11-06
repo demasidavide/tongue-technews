@@ -105,10 +105,6 @@ loadMore.addEventListener('click', ()=>{
 loadnews(false);
 })
 
-
-
-
-
 //carica notizie all avvio
 loadnews(true);
 //ricarica ogni 120s
