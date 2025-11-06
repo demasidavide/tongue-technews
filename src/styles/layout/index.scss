@@ -65,6 +65,10 @@ main{
                 >img{
                     width:30px;
                 }
+                >span{
+                    background-color: variables.$btn-color;
+                    color: variables.$bg-color;
+                }
             }
 
             }

@@ -63,4 +63,8 @@ main > .news > .card > .card-body > .btn {
 }
 main > .news > .card > .card-body > .btn > img {
   width: 30px;
+}
+main > .news > .card > .card-body > .btn > span {
+  background-color: #6cf9f4;
+  color: #14252F;
 }/*# sourceMappingURL=index.css.map */
