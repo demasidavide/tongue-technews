@@ -36,7 +36,6 @@ function createCard(by,title,url,score,comm){
                     <button type="button" class="btn btn-primary position-relative translate"><img src="/tongue-technews/src/assets/img/translate.png"></button>
                 </div>`
 
-                
                 parent.appendChild(card);
                 
                 //funzione per tradurre titolo
@@ -69,18 +68,21 @@ function createCard(by,title,url,score,comm){
 }
 
 //chiamata news e creazione card con chiamata singola per ogni id-notizia
-
+let numCard=10;
 const apiBase= 'https://hacker-news.firebaseio.com/v0/'
-function loadnews(){
+function loadnews(clearContent = true){
 //aggiunto per svuotare parent e non duplicare le news allo scadere del timer set interval in riga 71
 const scrollPosition = window.scrollY;
-parent.innerHTML="";
+if (clearContent) {
+    parent.innerHTML = ""; 
+  }
 //chiamata per lista id
 fetch(apiBase + 'newstories.json')
 .then(response=>response.json())
 .then(data=>{
   //slice per prendere solo le prime 10
-  const topten= data.slice(0,10);
+  const topten= data.slice(numCard -10,numCard);
+  
   topten.forEach( element=> {
     //chiamata e creazione per ogni id
     fetch(apiBase + `item/${element}.json`)
@@ -89,16 +91,27 @@ fetch(apiBase + 'newstories.json')
       createCard(dataitem.by,dataitem.title,dataitem.url,dataitem.score,dataitem.descendants);
       //riporta l utente alla stessa posizione dopo il reload automatico della pagina di riga 71
       window.scrollTo(0,scrollPosition);
-        
     })
     .catch(error=>console.error('Errore,imposibile creare la Card'));
     });
   })
 .catch(error=>console.log('Errore,impossibile procedere'));
 }
+
+//funzione per caricare piu notizie
+const loadMore = document.querySelector('.load-more')
+loadMore.addEventListener('click', ()=>{
+  numCard+=10;
+loadnews(false);
+})
+
+
+
+
+
 //carica notizie all avvio
-loadnews();
+loadnews(true);
 //ricarica ogni 120s
-setInterval(loadnews, 120000);
+setInterval(loadnews, 180000);
 
 

@@ -48,22 +48,6 @@ main > .news {
   align-items: center;
   margin-bottom: 20px;
 }
-main > .news > .load-more {
-  background-color: #106996;
-  color: #d2d9d9;
-  font-family: "Inter", sans-serif;
-  font-size: 1.2em;
-  padding: 10px 20px 10px 20px;
-  border-radius: 5px;
-  border: none;
-  box-shadow: 1px 1px 8px #106996;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-main > .news > .load-more:hover {
-  background-color: #6cf9f4;
-  color: #14252F;
-}
 main > .news > .card {
   box-sizing: border-box;
   background-color: #d2d9d9;
@@ -97,5 +81,38 @@ main > .news > .card > .card-body > .btn > img {
 }
 main > .news > .card > .card-body > .btn > span {
   background-color: #6cf9f4;
+  color: #14252F;
+}
+main > .container-load {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main > .container-load > .load-more {
+  background-color: #106996;
+  color: #d2d9d9;
+  font-family: "Inter", sans-serif;
+  font-size: 1.2em;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 1px 1px 8px #106996;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+main > .container-load > .load-more:hover {
+  background-color: #6cf9f4;
+  color: #14252F;
+}
+
+.footer {
+  background-color: #d2d9d9;
+  height: 60px;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
   color: #14252F;
 }/*# sourceMappingURL=index.css.map */

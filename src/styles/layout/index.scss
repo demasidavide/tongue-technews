@@ -48,23 +48,7 @@ main{
         justify-content: center;
         align-items: center;
         margin-bottom: 20px;
-        >.load-more{
-            background-color: variables.$nd-color;
-            color: variables.$footer-color;
-            font-family: variables.$main;
-            font-size: 1.2em;
-            padding: 10px 20px 10px 20px;
-            border-radius: 5px;
-            border: none;
-            box-shadow: 1px 1px 8px variables.$nd-color;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-
-            &:hover{
-                background-color: variables.$btn-color;
-                color: variables.$bg-color;
-            }
-        }
+        
         >.card{ 
             box-sizing: border-box;           
             background-color: variables.$footer-color;
@@ -105,4 +89,38 @@ main{
             }
         }
      }
+     >.container-load{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        >.load-more{
+            background-color: variables.$nd-color;
+            color: variables.$footer-color;
+            font-family: variables.$main;
+            font-size: 1.2em;
+            padding: 10px 20px 10px 20px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 1px 1px 8px variables.$nd-color;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+
+            &:hover{
+                background-color: variables.$btn-color;
+                color: variables.$bg-color;
+            }
+        }
+
+     };
  }
+ .footer{
+    background-color: variables.$footer-color;
+    height: 60px;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: variables.$main;
+    font-size: 1em;
+    color: variables.$bg-color;}
