@@ -42,6 +42,24 @@ main{
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-bottom: 20px;
+        >.load-more{
+            background-color: variables.$nd-color;
+            color: variables.$footer-color;
+            font-family: variables.$main;
+            font-size: 1.2em;
+            padding: 10px 20px 10px 20px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 1px 1px 8px variables.$nd-color;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+
+            &:hover{
+                background-color: variables.$btn-color;
+                color: variables.$bg-color;
+            }
+        }
         >.card{            
             background-color: variables.$footer-color;
             width: 90%;
@@ -52,11 +70,16 @@ main{
             box-shadow: 1px 1px 8px variables.$btn-color;
             >.card-body{
                 >.card-title{
+                    text-decoration: underline;
                     font-family: variables.$title;
                     font-size: 1.5em;
                     font-weight: bold;
                     padding: 0px 5px 5px 5px;
                     border-bottom: solid 2px variables.$bg-color;
+                    >a{
+                        text-decoration: none;
+                        color: variables.$bg-color;
+                    }
                 }
                 >.btn{
                     background-color: variables.$nd-color;

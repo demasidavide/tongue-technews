@@ -40,6 +40,23 @@ main > .news {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
+}
+main > .news > .load-more {
+  background-color: #106996;
+  color: #d2d9d9;
+  font-family: "Inter", sans-serif;
+  font-size: 1.2em;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 1px 1px 8px #106996;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+main > .news > .load-more:hover {
+  background-color: #6cf9f4;
+  color: #14252F;
 }
 main > .news > .card {
   background-color: #d2d9d9;
@@ -51,11 +68,16 @@ main > .news > .card {
   box-shadow: 1px 1px 8px #6cf9f4;
 }
 main > .news > .card > .card-body > .card-title {
+  text-decoration: underline;
   font-family: "Montserrat", sans-serif;
   font-size: 1.5em;
   font-weight: bold;
   padding: 0px 5px 5px 5px;
   border-bottom: solid 2px #14252F;
+}
+main > .news > .card > .card-body > .card-title > a {
+  text-decoration: none;
+  color: #14252F;
 }
 main > .news > .card > .card-body > .btn {
   background-color: #106996;
