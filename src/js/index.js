@@ -22,7 +22,7 @@ function createCard(by,title,url,score,comm){
                     <h3 class="card-title"><a href="${url}">${title}</a></h3>
                     <p class="card-text">${url}</p>
                     <button type="button" class="btn btn-primary position-relative">
-                        Point
+                        Points
                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
                             ${score}
                         </span>
@@ -33,9 +33,39 @@ function createCard(by,title,url,score,comm){
                             ${comm}
                         </span>
                     </button>
-                    <button type="button" class="btn btn-primary position-relative"><img src="/tongue-technews/src/assets/img/translate.png"></button>
+                    <button type="button" class="btn btn-primary position-relative translate"><img src="/tongue-technews/src/assets/img/translate.png"></button>
                 </div>`
-  parent.appendChild(card);              
+
+                
+                parent.appendChild(card);
+                
+                //funzione per tradurre titolo
+                const btnTranslate = card.querySelector('.translate');
+                const titleElement = card.querySelector('.card-title a');
+                //const per scope globale
+                const translate = () => {
+                      const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(title)}&langpair=en|it`;
+  
+                      fetch(url)
+                      .then(response => response.json())
+                      .then(data => {
+                      titleElement.textContent = data.responseData.translatedText;
+                      })
+                      .catch(error => console.error("Errore:", error));
+                      };
+
+                      // Desktop
+                      btnTranslate.addEventListener('mouseenter', translate);
+                      btnTranslate.addEventListener('mouseleave', () => {
+                      titleElement.textContent = title;
+                      });
+
+                      // Mobile
+                      btnTranslate.addEventListener('touchstart', translate);
+                      btnTranslate.addEventListener('touchend', () => {
+                      titleElement.textContent = title;
+                      })
+                   
 }
 
 //chiamata news e creazione card con chiamata singola per ogni id-notizia
@@ -59,8 +89,9 @@ fetch(apiBase + 'newstories.json')
       createCard(dataitem.by,dataitem.title,dataitem.url,dataitem.score,dataitem.descendants);
       //riporta l utente alla stessa posizione dopo il reload automatico della pagina di riga 71
       window.scrollTo(0,scrollPosition);
+        
     })
-    .catch(error=>console.error('Errore,imposibile caricare la storia'));
+    .catch(error=>console.error('Errore,imposibile creare la Card'));
     });
   })
 .catch(error=>console.log('Errore,impossibile procedere'));
@@ -69,3 +100,5 @@ fetch(apiBase + 'newstories.json')
 loadnews();
 //ricarica ogni 120s
 setInterval(loadnews, 120000);
+
+
