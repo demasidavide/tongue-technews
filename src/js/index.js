@@ -34,18 +34,21 @@ function createCard(by,title,url,score,comm){
   parent.appendChild(card);              
 }
 
-
-
 //prova di chiamata news
-
 
 const apiBase= 'https://hacker-news.firebaseio.com/v0/'
 
-fetch(apiBase + 'item/1345.json')
+fetch(apiBase + 'newstories.json')
 .then(response=>response.json())
 .then(data=>{
-  console.log(data)
-
+  const ten= data.slice(0,10);
+  ten.forEach( element=> {
+    fetch(apiBase + `item/${element}.json`)
+    .then(respitem=>respitem.json())
+    .then(data=>{
+      createCard(data.by,data.title,data.url,data.score,data.descendants);
+    })
+  });
 })
 
-createCard('ciao');
+
