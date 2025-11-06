@@ -1,6 +1,6 @@
 html, body {
   margin: 0;
-  background-color: #106996;
+  background-color: #14252F;
   width: 100vw;
   height: 100vh;
 }
@@ -12,6 +12,7 @@ html, body {
 .navbar {
   background-color: #14252F;
   height: 60px;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -21,7 +22,45 @@ html, body {
   color: #d2d9d9;
   font-weight: bold;
   font-family: "Montserrat", sans-serif;
+  border-bottom: solid 3px transparent;
+  transition: all 0.4s ease-in-out;
 }
-.navbar > .selected {
+.navbar > a.selected {
   border-bottom: solid 3px #6cf9f4;
+  text-decoration: none;
+  color: #d2d9d9;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+}
+
+main > .news {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main > .news > .card {
+  background-color: #d2d9d9;
+  width: 90%;
+  padding: 0px 5px 5px 5px;
+  border-radius: 5px;
+  margin: 10px 0px 0px 0px;
+  border: solid 1px #14252F;
+  box-shadow: 1px 1px 8px #6cf9f4;
+}
+main > .news > .card > .card-body > .card-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 0px 5px 5px 5px;
+  border-bottom: solid 2px #14252F;
+}
+main > .news > .card > .card-body > .btn {
+  background-color: #106996;
+  font-family: "Inter", sans-serif;
+  margin-right: 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+main > .news > .card > .card-body > .btn > img {
+  width: 30px;
 }/*# sourceMappingURL=index.css.map */

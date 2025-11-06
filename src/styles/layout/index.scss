@@ -2,7 +2,7 @@
 
 html,body{
     margin: 0;
-    background-color: variables.$nd-color;
+    background-color: variables.$bg-color;
     width: 100vw;
     height: 100vh;
     
@@ -14,6 +14,7 @@ html,body{
 .navbar{
     background-color: variables.$bg-color; 
     height: 60px;
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -22,9 +23,51 @@ html,body{
         color: variables.$footer-color;
         font-weight: bold;
         font-family: variables.$title;
+        border-bottom: solid 3px transparent;
+        transition: all 0.4s ease-in-out;
 
-    }
-    >.selected{
+        &.selected{
         border-bottom: solid 3px variables.$btn-color;
+        text-decoration: none;
+        color: variables.$footer-color;
+        font-weight: bold;
+        font-family: variables.$title;
+        }
     }
 }
+main{
+    >.news{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        >.card{            
+            background-color: variables.$footer-color;
+            width: 90%;
+            padding: 0px 5px 5px 5px;
+            border-radius: 5px;
+            margin:10px 0px 0px 0px;
+            border:solid 1px variables.$bg-color;
+            box-shadow: 1px 1px 8px variables.$btn-color;
+            >.card-body{
+                >.card-title{
+                    font-family: variables.$title;
+                    font-size: 1.5em;
+                    font-weight: bold;
+                    padding: 0px 5px 5px 5px;
+                    border-bottom: solid 2px variables.$bg-color;
+                }
+                >.btn{
+                    background-color: variables.$nd-color;
+                    font-family: variables.$main;
+                    margin-right: 10px;
+                    width: fit-content;
+                
+                >img{
+                    width:30px;
+                }
+            }
+
+            }
+        }
+     }
+ }
