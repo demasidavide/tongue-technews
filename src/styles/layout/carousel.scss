@@ -11,6 +11,7 @@ main{
     >.top-news{
         display: flex;
         flex-direction: row;
+        justify-content: center;
         background-color: variables.$footer-color;
         height: fit-content;
         scroll-behavior: smooth;
@@ -22,9 +23,11 @@ main{
             overflow-y: hidden;
             display: flex;
             gap: 20px;
+            align-items: center;
             
 
         >.card-top{
+            height: fit-content;
             min-width: 300px;
             box-sizing: border-box;           
             background-color: variables.$bg-color;

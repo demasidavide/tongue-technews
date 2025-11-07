@@ -8,6 +8,7 @@ main > .title {
 main > .top-news {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   background-color: #d2d9d9;
   height: -moz-fit-content;
   height: fit-content;
@@ -18,8 +19,11 @@ main > .top-news > .carousel-container {
   overflow-y: hidden;
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 main > .top-news > .carousel-container > .card-top {
+  height: -moz-fit-content;
+  height: fit-content;
   min-width: 300px;
   box-sizing: border-box;
   background-color: #14252F;
