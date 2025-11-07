@@ -76,7 +76,7 @@ fetch(apiBase + 'newstories.json')
     .then(respitem=>respitem.json())
     .then(dataitem=>{
       createCard(dataitem.by,dataitem.title,dataitem.url,dataitem.score,dataitem.descendants);
-      
+      //riporta l utente alla stessa posizione dopo il reload automatico della pagina di riga 71
       window.scrollTo(0,scrollPosition);
     })
     .catch(error=>console.error('Errore,imposibile creare la Card'));

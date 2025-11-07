@@ -47,13 +47,13 @@ main{
                     text-decoration: underline;
                     font-family: variables.$title;
                     color:variables.$footer-color;
-                    font-size: 1.5em;
+                    font-size: 1.3em;
                     font-weight: bold;
                     padding: 0px 5px 5px 5px;
                     border-bottom: solid 2px variables.$bg-color;
                     >a{
                         text-decoration: none;
-                        color: variables.$bg-color;
+                        color: variables.$footer-color;
                     }
                 }
                 >.card-text{
@@ -67,6 +67,7 @@ main{
                 
                 >img{
                     width:30px;
+                    
                 }
                 >span{
                     background-color: variables.$btn-color;

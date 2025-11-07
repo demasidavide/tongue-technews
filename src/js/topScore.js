@@ -6,7 +6,7 @@ function createCardTop(by,title,url,score,comm){
     cardTop.innerHTML = `<h5 class="card-header">By:${by}</h5>
                  <div class="card-body">
                     <img src="/tongue-technews/src/assets/img/garanzia-48.png">
-                    <h3 class="card-title">${title}</h3>
+                    <h3 class="card-title"><a href="${url}">${title}</a></h3>
                     <p class="card-text">${url}</p>
                     <button type="button" class="btn btn-primary position-relative">
                         Points
@@ -20,10 +20,37 @@ function createCardTop(by,title,url,score,comm){
                             ${comm}
                         </span>
                     </button>
-                    <button type="button" class="btn btn-primary position-relative"><img src="/tongue-technews/src/assets/img/translate.png"></button>
+                    <button type="button" class="btn btn-primary position-relative translate"><img src="/tongue-technews/src/assets/img/translate.png"></button>
                 </div>`
 
     parentTop.appendChild(cardTop);
+
+    //funzione per tradurre titolo
+                const btnTranslate = cardTop.querySelector('.translate');
+                const titleElement = cardTop.querySelector('.card-title a');
+                //const per scope globale
+                const translate = () => {
+                      const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(title)}&langpair=en|it`;
+  
+                      fetch(url)
+                      .then(response => response.json())
+                      .then(data => {
+                      titleElement.textContent = data.responseData.translatedText;
+                      })
+                      .catch(error => console.error("Errore:", error));
+                      };
+
+                      // Desktop
+                      btnTranslate.addEventListener('mouseenter', translate);
+                      btnTranslate.addEventListener('mouseleave', () => {
+                      titleElement.textContent = title;
+                      });
+
+                      // Mobile
+                      btnTranslate.addEventListener('touchstart', translate);
+                      btnTranslate.addEventListener('touchend', () => {
+                      titleElement.textContent = title;
+                      })
 }
 
 //chiamata per top news( della giornata?ultime 24 ore?)
@@ -40,8 +67,7 @@ async function topNews(){
                 const dataItem = await responseItem.json();
                 createCardTop(dataItem.by,dataItem.title,dataItem.url,dataItem.score,dataItem.descendants)
             }catch{
-                console.log('erroree')
-
+                console.log('errore nel caricamento delle card')
             }
     }
     }catch(e){

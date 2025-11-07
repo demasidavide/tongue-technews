@@ -41,14 +41,14 @@ main > .top-news > .carousel-container > .card-top > .card-body > .card-title {
   text-decoration: underline;
   font-family: "Montserrat", sans-serif;
   color: #d2d9d9;
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-weight: bold;
   padding: 0px 5px 5px 5px;
   border-bottom: solid 2px #14252F;
 }
 main > .top-news > .carousel-container > .card-top > .card-body > .card-title > a {
   text-decoration: none;
-  color: #14252F;
+  color: #d2d9d9;
 }
 main > .top-news > .carousel-container > .card-top > .card-body > .card-text {
   color: #d2d9d9;
