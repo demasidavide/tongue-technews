@@ -66,36 +66,36 @@ function createButtonMore(){
     parentSearch.insertAdjacentElement('afterend',containerButton)
 
     const buttonLoad = document.createElement('button')
-    buttonLoad.className = 'load-more'
+    buttonLoad.className = 'load-more-two'
     buttonLoad.textContent = 'Mostra altro'
     containerButton.appendChild(buttonLoad)
+
+    //const moreSearch= document.querySelector('.load-more-two')
+    buttonLoad.addEventListener('click', ()=>{
+    numCardGenerated += 10;
+    loadMoreSearchNews();   
+    })
 }
 
-
-
-
-//prova fetch con algolia
+//funzione per aggiornare la ricerca con campo input
 const textSearch = document.querySelector('.input-search')
-const apiBaseAl = 'https://hn.algolia.com/api/v1/search?query='
 let searchValue="";
-
-
+let timeoutId;
 function updateSearchValue(newValue){
     searchValue = newValue;
+
+    clearTimeout(timeoutId);
+
     if (searchValue.trim() !== '') {
-        
-        setTimeout(()=>{        
-        searchNews();
-        createButtonMore();
-    },3000);
-
-    }else{
-
-        setTimeout(()=>{        
-            parentSearch.innerHTML="";
-            document.querySelector('.container-load-two').remove();
-        },3000);
-
+        timeoutId = setTimeout(()=>{        
+            searchNews();
+            createButtonMore();
+        }, 3000);
+    } else {
+        timeoutId = setTimeout(()=>{        
+            parentSearch.innerHTML = "";
+            document.querySelector('.container-load-two')?.remove();
+        }, 3000);
     }
 }
 textSearch.addEventListener('input',(e)=>{
@@ -103,7 +103,30 @@ textSearch.addEventListener('input',(e)=>{
     console.log(searchValue)
 });
 
+//funzione per creare altre 10 card con load more
+
+async function loadMoreSearchNews(){
+        try{
+    const responseSearch = await fetch(apiBaseAl + searchValue);
+    const data = await responseSearch.json();
+    const ten = data.hits.slice(numCardGenerated - 10, numCardGenerated);
+
+    console.log(ten);
+
+    for(const element of ten){
+        createCardSearch(element.author,element.title,element.url,element.points,element.num_comments)
+    }
+    }catch{
+        console.log("errore nella ricerca card")
+    }
+}
+
+
+//prova fetch con algolia
+
+const apiBaseAl = 'https://hn.algolia.com/api/v1/search?query='
 let numCardGenerated = 10
+
 async function searchNews() {
     try{
     const responseSearch = await fetch(apiBaseAl + searchValue);

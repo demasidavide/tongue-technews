@@ -93,7 +93,7 @@ main > .search-news > .container-load-two {
   align-items: center;
   justify-content: center;
 }
-main > .search-news > .container-load-two > .load-more {
+main > .search-news > .container-load-two > .load-more-two {
   background-color: #106996;
   color: #d2d9d9;
   font-family: "Inter", sans-serif;
@@ -105,7 +105,7 @@ main > .search-news > .container-load-two > .load-more {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
-main > .search-news > .container-load-two > .load-more:hover {
+main > .search-news > .container-load-two > .load-more-two:hover {
   background-color: #6cf9f4;
   color: #14252F;
 }/*# sourceMappingURL=search.css.map */
