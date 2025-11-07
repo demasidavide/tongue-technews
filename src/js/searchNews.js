@@ -62,7 +62,11 @@ let searchValue="";
 function updateSearchValue(newValue){
     searchValue = newValue;
     if (searchValue.trim() !== '') {
+        
+        setTimeout(()=>{        
         searchNews();
+        },3000);
+        
     }else{
         parentSearch.innerHTML="";
     }
