@@ -1,27 +1,39 @@
-main > .top-news {
-  background-color: #d2d9d9;
-  height: 500px;
-}
-main > .top-news > .title {
+main > .title {
+  text-align: center;
   font-family: "Montserrat", sans-serif;
-  color: #14252F;
+  color: #d2d9d9;
   margin: 20px 0px 10px 0px;
   font-weight: bold;
 }
-main > .top-news > .card-top {
+main > .top-news {
+  display: flex;
+  flex-direction: row;
+  background-color: #d2d9d9;
+  height: -moz-fit-content;
+  height: fit-content;
+  scroll-behavior: smooth;
+}
+main > .top-news > .carousel-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  gap: 20px;
+}
+main > .top-news > .carousel-container > .card-top {
+  min-width: 300px;
   box-sizing: border-box;
   background-color: #14252F;
   width: 85%;
   border-radius: 5px;
-  margin: 10px 0px 0px 0px;
+  margin: 30px 0px 30px 0px;
   border: solid 1px #d2d9d9;
   box-shadow: 1px 1px 18px 5px #c7bb3d;
   padding: 3%;
 }
-main > .top-news > .card-top > .card-header {
+main > .top-news > .carousel-container > .card-top > .card-header {
   color: #d2d9d9;
 }
-main > .top-news > .card-top > .card-body > .card-title {
+main > .top-news > .carousel-container > .card-top > .card-body > .card-title {
   text-decoration: underline;
   font-family: "Montserrat", sans-serif;
   color: #d2d9d9;
@@ -30,24 +42,33 @@ main > .top-news > .card-top > .card-body > .card-title {
   padding: 0px 5px 5px 5px;
   border-bottom: solid 2px #14252F;
 }
-main > .top-news > .card-top > .card-body > .card-title > a {
+main > .top-news > .carousel-container > .card-top > .card-body > .card-title > a {
   text-decoration: none;
   color: #14252F;
 }
-main > .top-news > .card-top > .card-body > .card-text {
+main > .top-news > .carousel-container > .card-top > .card-body > .card-text {
   color: #d2d9d9;
 }
-main > .top-news > .card-top > .card-body > .btn {
+main > .top-news > .carousel-container > .card-top > .card-body > .btn {
   background-color: #106996;
   font-family: "Inter", sans-serif;
   margin-right: 10px;
   width: -moz-fit-content;
   width: fit-content;
 }
-main > .top-news > .card-top > .card-body > .btn > img {
+main > .top-news > .carousel-container > .card-top > .card-body > .btn > img {
   width: 30px;
 }
-main > .top-news > .card-top > .card-body > .btn > span {
+main > .top-news > .carousel-container > .card-top > .card-body > .btn > span {
   background-color: #6cf9f4;
   color: #14252F;
+}
+
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }/*# sourceMappingURL=carousel.css.map */

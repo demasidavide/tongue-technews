@@ -1,21 +1,36 @@
 @use '../abstract/variables';
 
 main{
-    >.top-news{
-        >.title{
+    >.title{
+        text-align: center;
             font-family: variables.$title;
-            color: variables.$bg-color;
+            color: variables.$footer-color;
             margin: 20px 0px 10px 0px;
             font-weight: bold;
         }
+    >.top-news{
+        display: flex;
+        flex-direction: row;
         background-color: variables.$footer-color;
-        height: 500px;
+        height: fit-content;
+        scroll-behavior: smooth;
+        
+        
+        >.carousel-container{
+            // inizio set per carosello
+            overflow-x: auto;
+            overflow-y: hidden;
+            display: flex;
+            gap: 20px;
+            
+
         >.card-top{
+            min-width: 300px;
             box-sizing: border-box;           
             background-color: variables.$bg-color;
             width: 85%;
             border-radius: 5px;
-            margin:10px 0px 0px 0px;
+            margin:30px 0px 30px 0px;
             border:solid 1px variables.$footer-color;
             box-shadow: 1px 1px 18px 5px variables.$gold-color;
             padding: 3%;
@@ -60,3 +75,12 @@ main{
         }
         }
     }
+}
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
