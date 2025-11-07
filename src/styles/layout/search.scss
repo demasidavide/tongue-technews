@@ -1,0 +1,36 @@
+@use '../abstract/variables';
+main{
+    >.search-news{
+        margin-top: 10%;
+        background-color: variables.$footer-color;
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        >.container-search{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 30%;
+            >.title-search{
+                font-family: variables.$title;
+                color: variables.$bg-color;
+            }
+            >.input-search{
+                width: 300px;
+                height: 40px;
+                border-radius: 5px;
+                border: solid 1px variables.$bg-color;
+                box-shadow: 1px 1px 8px variables.$bg-color;
+                padding: 5px 10px;
+                font-size: 16px;
+                font-family: variables.$main;
+                &:focus{
+                    outline: none;
+                    border: solid 2px variables.$btn-color;
+                    box-shadow: 2px 2px 10px variables.$btn-color;
+                }
+            }
+        }
+    }
+}
