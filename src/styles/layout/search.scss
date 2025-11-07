@@ -3,9 +3,11 @@ main{
     >.search-news{
         margin-top: 10%;
         background-color: variables.$footer-color;
-        height: 500px;
+        height: fit-content;
         display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
         >.container-search{
             display: flex;
             flex-direction: column;
@@ -32,5 +34,64 @@ main{
                 }
             }
         }
+        >.container-card-search{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        
+        >.card-search{
+            height: fit-content;
+            min-width: 300px;
+            box-sizing: border-box;           
+            background-color: variables.$bg-color;
+            width: 85%;
+            border-radius: 5px;
+            margin:30px 0px 30px 0px;
+            border:solid 1px variables.$footer-color;
+            box-shadow: 1px 2px 4px 3px variables.$bg-color;
+            padding: 3%;
+            >.card-header{
+                color:variables.$footer-color;
+            }
+
+            >.card-body{
+                
+                >.card-title{
+                    text-decoration: underline;
+                    font-family: variables.$title;
+                    color:variables.$footer-color;
+                    font-size: 1.3em;
+                    font-weight: bold;
+                    padding: 0px 5px 5px 5px;
+                    border-bottom: solid 2px variables.$bg-color;
+                    >a{
+                        text-decoration: none;
+                        color: variables.$footer-color;
+                    }
+                }
+                >.card-text{
+                    color: variables.$footer-color;
+                    word-wrap: break-word;
+                }
+                >.btn{
+                    background-color: variables.$nd-color;
+                    font-family: variables.$main;
+                    margin-right: 10px;
+                    width: fit-content;
+                
+                >img{
+                    width:30px;
+                    
+                }
+                >span{
+                    background-color: variables.$btn-color;
+                    color: variables.$bg-color;
+                }
+            }
+
+            }
+        }
     }
-}
+}}
