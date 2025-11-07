@@ -9,12 +9,14 @@ main{
             font-weight: bold;
         }
     >.top-news{
-        background-image: url(/tongue-technews/src/assets/img/sfondotop.webp);
+        background-image: url(/tongue-technews/src/assets/img/sfondotopc.webp);
         display: flex;
         flex-direction: row;
         justify-content: center;
         background-color: variables.$footer-color;
         height: fit-content;
+        padding-bottom: 50px;
+        padding-top: 50px;
         scroll-behavior: smooth;
         
         
@@ -36,7 +38,7 @@ main{
             border-radius: 5px;
             margin:30px 0px 30px 0px;
             border:solid 1px variables.$footer-color;
-            box-shadow: 1px 1px 18px 5px variables.$gold-color;
+            box-shadow: 1px 1px 18px 5px variables.$btn-color;
             padding: 3%;
             >.card-header{
                 color:variables.$footer-color;
@@ -59,6 +61,7 @@ main{
                 }
                 >.card-text{
                     color: variables.$footer-color;
+                    word-wrap: break-word;
                 }
                 >.btn{
                     background-color: variables.$nd-color;
