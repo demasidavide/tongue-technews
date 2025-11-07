@@ -77,6 +77,15 @@ function createButtonMore(){
     })
 }
 
+//funzione per spinner
+function spinner(){
+const spinner = document.querySelector('.spinner-border')
+    spinner.style.display = 'block'
+    setTimeout(()=>{
+        spinner.style.display = 'none';
+    },3000)
+}
+
 //funzione per aggiornare la ricerca con campo input
 const textSearch = document.querySelector('.input-search')
 let searchValue="";
@@ -87,6 +96,7 @@ function updateSearchValue(newValue){
     clearTimeout(timeoutId);
 
     if (searchValue.trim() !== '') {
+        spinner();
         timeoutId = setTimeout(()=>{        
             searchNews();
             createButtonMore();
@@ -128,6 +138,8 @@ const apiBaseAl = 'https://hn.algolia.com/api/v1/search?query='
 let numCardGenerated = 10
 
 async function searchNews() {
+    
+
     try{
     const responseSearch = await fetch(apiBaseAl + searchValue);
     const data = await responseSearch.json();
@@ -141,5 +153,7 @@ async function searchNews() {
     }
     }catch{
         console.log("errore nella ricerca card")
+    }finally{
+        spinner.style.display = 'none'
     }
 }
