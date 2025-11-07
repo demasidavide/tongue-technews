@@ -57,9 +57,13 @@ function createCardSearch(by,title,url,score,comm){
 
  //funzione per creare bottone per caricare altre notizie
 function createButtonMore(){
+
+    if(document.querySelector('.container-load-two')){
+        return;
+    }
     const containerButton = document.createElement('div')
-    containerButton.className='container-load'
-    parentSearch.appendChild(containerButton)
+    containerButton.className='container-load-two'
+    parentSearch.insertAdjacentElement('afterend',containerButton)
 
     const buttonLoad = document.createElement('button')
     buttonLoad.className = 'load-more'
@@ -83,12 +87,13 @@ function updateSearchValue(newValue){
         setTimeout(()=>{        
         searchNews();
         createButtonMore();
-        },3000);
+    },3000);
 
     }else{
 
         setTimeout(()=>{        
             parentSearch.innerHTML="";
+            document.querySelector('.container-load-two').remove();
         },3000);
 
     }

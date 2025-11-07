@@ -88,12 +88,12 @@ main > .search-news > .container-card-search > .card-search > .card-body > .btn 
   background-color: #6cf9f4;
   color: #14252F;
 }
-main > .search-news > .container-card-search > .container-load {
+main > .search-news > .container-load-two {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-main > .search-news > .container-card-search > .container-load > .load-more {
+main > .search-news > .container-load-two > .load-more {
   background-color: #106996;
   color: #d2d9d9;
   font-family: "Inter", sans-serif;
@@ -105,7 +105,7 @@ main > .search-news > .container-card-search > .container-load > .load-more {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
-main > .search-news > .container-card-search > .container-load > .load-more:hover {
+main > .search-news > .container-load-two > .load-more:hover {
   background-color: #6cf9f4;
   color: #14252F;
 }/*# sourceMappingURL=search.css.map */
