@@ -1,5 +1,5 @@
 //funzione per creare card-top
-const parent = document.querySelector('.carousel-container')
+const parentTop = document.querySelector('.carousel-container')
 function createCardTop(by,title,url,score,comm){
     const cardTop = document.createElement('div');
     cardTop.className = 'card-top';
@@ -23,9 +23,30 @@ function createCardTop(by,title,url,score,comm){
                     <button type="button" class="btn btn-primary position-relative"><img src="/tongue-technews/src/assets/img/translate.png"></button>
                 </div>`
 
-    parent.appendChild(cardTop);
+    parentTop.appendChild(cardTop);
 }
 
 //chiamata per top news( della giornata?ultime 24 ore?)
 //prova con async
-async function
+const apiBaseTop='https://hacker-news.firebaseio.com/v0/';
+async function topNews(){
+    try{
+    const response = await fetch(apiBaseTop + 'topstories.json')
+    const data = await response.json();
+    const ten = data.slice(0, 10);
+    for(const element of ten){
+            try{
+                const responseItem = await fetch(apiBaseTop + `/item/${element}.json`)
+                const dataItem = await responseItem.json();
+                createCardTop(dataItem.by,dataItem.title,dataItem.url,dataItem.score,dataItem.descendants)
+            }catch{
+                console.log('erroree')
+
+            }
+    }
+    }catch(e){
+        console.log('card non create')
+
+    }
+}
+topNews()
