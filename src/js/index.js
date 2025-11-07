@@ -1,7 +1,7 @@
 
 //funzione per creare card
 const parent = document.querySelector('.news');
-function createCard(by,title,url,score,comm){
+function createCard(id,by,title,url,score,comm){
   const card = document.createElement('div');
   card.className='card';
   card.innerHTML= `<h5 class="card-header">${by}</h5>
@@ -14,11 +14,14 @@ function createCard(by,title,url,score,comm){
                             ${score}
                         </span>
                     </button>
+                    <a href="https://news.ycombinator.com/item?id=${id}">
                     <button type="button" class="btn btn-primary position-relative">
                         comments
                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
                             ${comm}
                         </span>
+                    </a>
+                    
                     </button>
                     <button type="button" class="btn btn-primary position-relative translate"><img src="/tongue-technews/src/assets/img/translate.png"></button>
                 </div>`
@@ -75,7 +78,7 @@ fetch(apiBase + 'newstories.json')
     fetch(apiBase + `item/${element}.json`)
     .then(respitem=>respitem.json())
     .then(dataitem=>{
-      createCard(dataitem.by,dataitem.title,dataitem.url,dataitem.score,dataitem.descendants);
+      createCard(dataitem.id,dataitem.by,dataitem.title,dataitem.url,dataitem.score,dataitem.descendants);
       //riporta l utente alla stessa posizione dopo il reload automatico della pagina di riga 71
       window.scrollTo(0,scrollPosition);
     })

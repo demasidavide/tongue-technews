@@ -53,7 +53,7 @@ main > .news > .card, main .top-news > .card {
   background-color: #d2d9d9;
   width: 85%;
   border-radius: 5px;
-  margin: 10px 0px 0px 0px;
+  margin: 10px 0px 20px 0px;
   border: solid 1px #14252F;
   box-shadow: 1px 1px 8px #6cf9f4;
 }
@@ -80,6 +80,14 @@ main > .news > .card > .card-body > .btn > img, main .top-news > .card > .card-b
   width: 30px;
 }
 main > .news > .card > .card-body > .btn > span, main .top-news > .card > .card-body > .btn > span {
+  background-color: #6cf9f4;
+  color: #14252F;
+}
+main > .news > .card > .card-body > .btn > a, main .top-news > .card > .card-body > .btn > a {
+  text-decoration: none;
+  color: #d2d9d9;
+}
+main > .news > .card > .card-body > .btn > a > span, main .top-news > .card > .card-body > .btn > a > span {
   background-color: #6cf9f4;
   color: #14252F;
 }

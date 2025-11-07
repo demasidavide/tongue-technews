@@ -54,7 +54,7 @@ main{
             background-color: variables.$footer-color;
             width: 85%;
             border-radius: 5px;
-            margin:10px 0px 0px 0px;
+            margin:10px 0px 20px 0px;
             border:solid 1px variables.$bg-color;
             box-shadow: 1px 1px 8px variables.$btn-color;
             >.card-body{
@@ -70,7 +70,8 @@ main{
                         text-decoration: none;
                         color: variables.$bg-color;
                     }
-                }
+                }               
+                
                 >.btn{
                     background-color: variables.$nd-color;
                     font-family: variables.$main;
@@ -83,6 +84,14 @@ main{
                 >span{
                     background-color: variables.$btn-color;
                     color: variables.$bg-color;
+                }
+                >a{
+                    text-decoration: none;
+                    color: variables.$footer-color;
+                    >span{
+                    background-color: variables.$btn-color;
+                    color: variables.$bg-color;
+                        }
                 }
             }
 
