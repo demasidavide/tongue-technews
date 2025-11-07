@@ -63,6 +63,8 @@ function updateSearchValue(newValue){
     searchValue = newValue;
     if (searchValue.trim() !== '') {
         searchNews();
+    }else{
+        parentSearch.innerHTML="";
     }
 }
 textSearch.addEventListener('input',(e)=>{
