@@ -54,10 +54,27 @@ function createCardSearch(by,title,url,score,comm){
                       })
 }
 
+
+ //funzione per creare bottone per caricare altre notizie
+function createButtonMore(){
+    const containerButton = document.createElement('div')
+    containerButton.className='container-load'
+    parentSearch.appendChild(containerButton)
+
+    const buttonLoad = document.createElement('button')
+    buttonLoad.className = 'load-more'
+    buttonLoad.textContent = 'Mostra altro'
+    containerButton.appendChild(buttonLoad)
+}
+
+
+
+
 //prova fetch con algolia
 const textSearch = document.querySelector('.input-search')
 const apiBaseAl = 'https://hn.algolia.com/api/v1/search?query='
 let searchValue="";
+
 
 function updateSearchValue(newValue){
     searchValue = newValue;
@@ -65,10 +82,15 @@ function updateSearchValue(newValue){
         
         setTimeout(()=>{        
         searchNews();
+        createButtonMore();
         },3000);
-        
+
     }else{
-        parentSearch.innerHTML="";
+
+        setTimeout(()=>{        
+            parentSearch.innerHTML="";
+        },3000);
+
     }
 }
 textSearch.addEventListener('input',(e)=>{
@@ -76,12 +98,14 @@ textSearch.addEventListener('input',(e)=>{
     console.log(searchValue)
 });
 
+let numCardGenerated = 10
 async function searchNews() {
     try{
     const responseSearch = await fetch(apiBaseAl + searchValue);
     const data = await responseSearch.json();
-    const ten = data.hits.slice(0, 10);
+    const ten = data.hits.slice(numCardGenerated - 10, numCardGenerated);
     parentSearch.innerHTML="";
+
     console.log(ten);
 
     for(const element of ten){
@@ -90,5 +114,4 @@ async function searchNews() {
     }catch{
         console.log("errore nella ricerca card")
     }
-    
 }
