@@ -89,6 +89,14 @@ main{
                     background-color: variables.$btn-color;
                     color: variables.$bg-color;
                 }
+                >a{
+                    text-decoration: none;
+                    color: variables.$footer-color;
+                    >span{
+                    background-color: variables.$btn-color;
+                    color: variables.$bg-color;
+                        }
+                }
             }
 
             }

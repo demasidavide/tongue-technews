@@ -2,7 +2,7 @@
 
 const parentSearch = document.querySelector('.container-card-search')
 
-function createCardSearch(by,title,url,score,comm){
+function createCardSearch(id,by,title,url,score,comm){
     const cardSearch = document.createElement('div')
     cardSearch.className='card-search';
     cardSearch.innerHTML=`
@@ -16,11 +16,13 @@ function createCardSearch(by,title,url,score,comm){
                             ${score}
                         </span>
                     </button>
+                    <a href="https://news.ycombinator.com/item?id=${id}">
                     <button type="button" class="btn btn-primary position-relative">
                         comments
                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
                             ${comm}
                         </span>
+                    </a>
                     </button>
                     <button type="button" class="btn btn-primary position-relative translate"><img src="/tongue-technews/src/assets/img/translate.png"></button>
                 </div>`
@@ -124,7 +126,7 @@ async function loadMoreSearchNews(){
     console.log(ten);
 
     for(const element of ten){
-        createCardSearch(element.author,element.title,element.url,element.points,element.num_comments)
+        createCardSearch(element.id,element.author,element.title,element.url,element.points,element.num_comments)
     }
     }catch{
         console.log("errore nella ricerca card")
@@ -138,8 +140,6 @@ const apiBaseAl = 'https://hn.algolia.com/api/v1/search?query='
 let numCardGenerated = 10
 
 async function searchNews() {
-    
-
     try{
     const responseSearch = await fetch(apiBaseAl + searchValue);
     const data = await responseSearch.json();
@@ -149,7 +149,7 @@ async function searchNews() {
     console.log(ten);
 
     for(const element of ten){
-        createCardSearch(element.author,element.title,element.url,element.points,element.num_comments)
+        createCardSearch(element.id,element.author,element.title,element.url,element.points,element.num_comments)
     }
     }catch{
         console.log("errore nella ricerca card")

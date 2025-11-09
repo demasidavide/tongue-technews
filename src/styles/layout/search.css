@@ -88,6 +88,14 @@ main > .search-news > .container-card-search > .card-search > .card-body > .btn 
   background-color: #6cf9f4;
   color: #14252F;
 }
+main > .search-news > .container-card-search > .card-search > .card-body > .btn > a {
+  text-decoration: none;
+  color: #d2d9d9;
+}
+main > .search-news > .container-card-search > .card-search > .card-body > .btn > a > span {
+  background-color: #6cf9f4;
+  color: #14252F;
+}
 main > .search-news > .container-load-two {
   display: flex;
   align-items: center;
