@@ -71,6 +71,14 @@ main > .top-news > .carousel-container > .card-top > .card-body > .btn > span {
   background-color: #6cf9f4;
   color: #14252F;
 }
+main > .top-news > .carousel-container > .card-top > .card-body > .btn > a {
+  text-decoration: none;
+  color: #d2d9d9;
+}
+main > .top-news > .carousel-container > .card-top > .card-body > .btn > a > span {
+  background-color: #6cf9f4;
+  color: #14252F;
+}
 
 @keyframes scroll-infinite {
   0% {

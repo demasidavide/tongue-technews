@@ -21,7 +21,6 @@ function createCard(id,by,title,url,score,comm){
                             ${comm}
                         </span>
                     </a>
-                    
                     </button>
                     <button type="button" class="btn btn-primary position-relative translate"><img src="/tongue-technews/src/assets/img/translate.png"></button>
                 </div>`

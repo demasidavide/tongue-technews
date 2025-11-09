@@ -1,6 +1,6 @@
 //funzione per creare card-top
 const parentTop = document.querySelector('.carousel-container')
-function createCardTop(by,title,url,score,comm){
+function createCardTop(id,by,title,url,score,comm){
     const cardTop = document.createElement('div');
     cardTop.className = 'card-top';
     cardTop.innerHTML = `<h5 class="card-header">By:${by}</h5>
@@ -14,11 +14,13 @@ function createCardTop(by,title,url,score,comm){
                             ${score}
                         </span>
                     </button>
+                    <a href="https://news.ycombinator.com/item?id=${id}">
                     <button type="button" class="btn btn-primary position-relative">
                         comments
                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
                             ${comm}
                         </span>
+                    </a>
                     </button>
                     <button type="button" class="btn btn-primary position-relative translate"><img src="/tongue-technews/src/assets/img/translate.png"></button>
                 </div>`
@@ -65,7 +67,7 @@ async function topNews(){
             try{
                 const responseItem = await fetch(apiBaseTop + `/item/${element}.json`)
                 const dataItem = await responseItem.json();
-                createCardTop(dataItem.by,dataItem.title,dataItem.url,dataItem.score,dataItem.descendants)
+                createCardTop(dataItem.id,dataItem.by,dataItem.title,dataItem.url,dataItem.score,dataItem.descendants)
             }catch{
                 console.log('errore nel caricamento delle card')
             }
