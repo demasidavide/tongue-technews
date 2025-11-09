@@ -55,7 +55,7 @@ main > .news > .card, main .top-news > .card {
   border-radius: 5px;
   margin: 10px 0px 20px 0px;
   border: solid 1px #14252F;
-  box-shadow: 1px 1px 8px #6cf9f4;
+  box-shadow: 1px 1px 8px #d2d9d9;
 }
 main > .news > .card > img, main .top-news > .card > img {
   width: 30px;

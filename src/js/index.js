@@ -5,7 +5,7 @@ function createCard(id,by,title,url,score,comm){
   const card = document.createElement('div');
   card.className='card';
   card.innerHTML= `<h5 class="card-header">${by}</h5>
-                    <img src="/tongue-technews/src/assets/img/condividi-30-light.png">
+                    <img src="/tongue-technews/src/assets/img/condividi-30-light.png" id='share'>
                 <div class="card-body">
                     <h3 class="card-title"><a href="${url}">${title}</a></h3>
                     <p class="card-text">${url}</p>
@@ -54,7 +54,20 @@ function createCard(id,by,title,url,score,comm){
                       btnTranslate.addEventListener('touchend', () => {
                       titleElement.textContent = title;
                       })
-                   
+
+                      //aggiunta LISTENER per condividere la notizia
+                      const share = document.querySelector('#share')
+                      share.addEventListener('click',()=>{
+                        if(navigator.share){
+                          navigator.share({
+                            title: title,
+                            text: "Guarda questa News Tecnologica!",
+                            url: url
+                          })
+                        }else{
+                          console.log('errore nella condivisione')
+                        }
+                      })
 }
 
 //chiamata news e creazione card con chiamata singola per ogni id-notizia
@@ -99,5 +112,7 @@ loadnews(false);
 loadnews(true);
 //ricarica ogni 6min
 setInterval(loadnews, 360000);
+
+
 
 
