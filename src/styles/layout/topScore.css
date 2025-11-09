@@ -39,6 +39,12 @@ main > .top-news > .carousel-container > .card-top {
 }
 main > .top-news > .carousel-container > .card-top > .card-header {
   color: #d2d9d9;
+  display: flex;
+  justify-content: space-between;
+}
+main > .top-news > .carousel-container > .card-top > .card-header > #share-top {
+  width: 30px;
+  cursor: pointer;
 }
 main > .top-news > .carousel-container > .card-top > .card-body > .card-title {
   text-decoration: underline;

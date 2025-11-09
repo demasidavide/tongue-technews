@@ -3,8 +3,10 @@ const parentTop = document.querySelector('.carousel-container')
 function createCardTop(id,by,title,url,score,comm){
     const cardTop = document.createElement('div');
     cardTop.className = 'card-top';
-    cardTop.innerHTML = `<h5 class="card-header">By:${by}</h5>
-                 <div class="card-body">
+    cardTop.innerHTML = `<h5 class="card-header">By:${by}
+                        <img src="/tongue-technews/src/assets/img/condividi-30-dark.png" id='share-top'>
+                        </h5>
+                    <div class="card-body">
                     <img src="/tongue-technews/src/assets/img/garanzia-48.png">
                     <h3 class="card-title"><a href="${url}">${title}</a></h3>
                     <p class="card-text">${url}</p>
@@ -52,6 +54,19 @@ function createCardTop(id,by,title,url,score,comm){
                       btnTranslate.addEventListener('touchstart', translate);
                       btnTranslate.addEventListener('touchend', () => {
                       titleElement.textContent = title;
+                      })
+                      //aggiunta LISTENER per condividere la notizia
+                      const shareTop = document.querySelector('#share-top')
+                      shareTop.addEventListener('click',()=>{
+                        if(navigator.share){
+                          navigator.share({
+                            title: title,
+                            text: "Guarda questa News Tecnologica!",
+                            url: url
+                          })
+                        }else{
+                          console.log('errore nella condivisione')
+                        }
                       })
 }
 

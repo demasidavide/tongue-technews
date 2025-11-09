@@ -42,8 +42,14 @@ main{
             padding: 3%;
             >.card-header{
                 color:variables.$footer-color;
-            }
+                display: flex;
+                justify-content: space-between;
 
+                >#share-top{
+                width:30px;
+                cursor: pointer;
+            }
+            }
             >.card-body{
                 
                 >.card-title{
