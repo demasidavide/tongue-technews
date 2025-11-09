@@ -57,6 +57,13 @@ main > .news > .card, main .top-news > .card {
   border: solid 1px #14252F;
   box-shadow: 1px 1px 8px #6cf9f4;
 }
+main > .news > .card > img, main .top-news > .card > img {
+  width: 30px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
 main > .news > .card > .card-body > .card-title, main .top-news > .card > .card-body > .card-title {
   text-decoration: underline;
   font-family: "Montserrat", sans-serif;

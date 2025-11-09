@@ -5,6 +5,7 @@ function createCard(id,by,title,url,score,comm){
   const card = document.createElement('div');
   card.className='card';
   card.innerHTML= `<h5 class="card-header">${by}</h5>
+                    <img src="/tongue-technews/src/assets/img/condividi-30-light.png">
                 <div class="card-body">
                     <h3 class="card-title"><a href="${url}">${title}</a></h3>
                     <p class="card-text">${url}</p>

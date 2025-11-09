@@ -57,6 +57,13 @@ main{
             margin:10px 0px 20px 0px;
             border:solid 1px variables.$bg-color;
             box-shadow: 1px 1px 8px variables.$btn-color;
+            >img{
+                width:30px;
+                position: absolute;
+                top:10px;
+                right:10px;
+                cursor: pointer;
+            }
             >.card-body{
                 
                 >.card-title{
