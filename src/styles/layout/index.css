@@ -99,6 +99,7 @@ main > .container-load {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 main > .container-load > .load-more {
   background-color: #106996;
@@ -107,6 +108,7 @@ main > .container-load > .load-more {
   font-size: 1.2em;
   padding: 10px 20px 10px 20px;
   border-radius: 5px;
+  margin: 1px auto;
   border: none;
   box-shadow: 1px 1px 8px #106996;
   cursor: pointer;

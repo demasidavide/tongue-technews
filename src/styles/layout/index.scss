@@ -108,8 +108,10 @@ main{
      }
      >.container-load{
         display: flex;
+        
         align-items: center;
         justify-content: center;
+        text-align: center;
         
         >.load-more{
             background-color: variables.$nd-color;
@@ -118,6 +120,7 @@ main{
             font-size: 1.2em;
             padding: 10px 20px 10px 20px;
             border-radius: 5px;
+            margin:1px auto;
             border: none;
             box-shadow: 1px 1px 8px variables.$nd-color;
             cursor: pointer;
