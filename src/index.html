@@ -67,6 +67,16 @@
                 <h3 class="title-search">Ricerca le tue notizie</h3>
                 <input type="text" class="input-search" placeholder="Scrivi qui la tua ricerca">
             </div>
+            <!-- div nascostoper ricerche senza risultato -->
+             <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                    Nessun risultato trovato!
+                    </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" autohide: true></button>
+                </div>
+            </div>
+<!-- fine div nascosto -->
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                 <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
                 <label class="btn btn-outline" for="btnradio1">Titolo</label>

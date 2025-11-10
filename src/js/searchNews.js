@@ -153,18 +153,17 @@ async function loadMoreSearchNews(){
 const apiBaseA = 'https://hn.algolia.com/api/v1/search?tags=story,author_'
 const apiBaseT = 'https://hn.algolia.com/api/v1/search?query='
 let apiB = apiBaseT
+const toastError = document.querySelector('.toast')
 //const apiBaseAl = 'https://hn.algolia.com/api/v1/search?tags=story&restrictSearchableAttributes=title&query='
 let numCardGenerated = 10
 const filter = document.querySelector('.btn-group');
 filter.addEventListener('change',(e)=>{
     if(e.target.id ==='btnradio2'){
         apiB = apiBaseA;
-            parentSearch.innerHTML="";
-
+                textSearch.value='';
     }else{
         apiB = apiBaseT;
-            parentSearch.innerHTML="";
-
+                textSearch.value='';
     }
 })
 
@@ -174,15 +173,21 @@ async function searchNews() {
     const data = await responseSearch.json();
     const ten = data.hits.slice(numCardGenerated - 10, numCardGenerated);
     parentSearch.innerHTML="";
-
     console.log(ten);
-
+    if(ten.length === 0){
+        toastError.classList.add('show');
+        setTimeout(()=>{
+        toastError.classList.remove('show');},4000);
+        //azzera campo ricerca
+        textSearch.value='';
+    }
     for(const element of ten){
-        createCardSearch(element.id,element.author,element.title,element.url,element.points,element.num_comments)
+        createCardSearch(element.id,element.author,element.title,element.url,element.points,element.num_comments);
     }
     }catch{
         console.log("errore nella ricerca card")
     }finally{
-        spinner.style.display = 'none'
+        spinner.style.display = 'none';
     }
+
 }
