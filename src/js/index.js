@@ -98,7 +98,12 @@ fetch(apiBase + 'newstories.json')
     .catch(error=>console.error('Errore,impossibile creare la Card'));
     });
   })
-.catch(error=>console.log('Errore,impossibile procedere'));
+.catch(error=>{
+        const alertNew = document.getElementById('alert-new')
+        alertNew.classList.remove('visually-hidden')
+        console.log('Errore,impossibile procedere')
+})
+
 }
 
 //funzione per caricare piu notizie
