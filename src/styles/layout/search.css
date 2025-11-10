@@ -56,6 +56,12 @@ main > .search-news > .container-card-search > .card-search {
 }
 main > .search-news > .container-card-search > .card-search > .card-header {
   color: #d2d9d9;
+  display: flex;
+  justify-content: space-between;
+}
+main > .search-news > .container-card-search > .card-search > .card-header > #share-news {
+  width: 30px;
+  cursor: pointer;
 }
 main > .search-news > .container-card-search > .card-search > .card-body > .card-title {
   text-decoration: underline;

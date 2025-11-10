@@ -6,7 +6,9 @@ function createCardSearch(id,by,title,url,score,comm){
     const cardSearch = document.createElement('div')
     cardSearch.className='card-search';
     cardSearch.innerHTML=`
-                <h5 class="card-header">By: ${by}</h5><br>
+                <h5 class="card-header">By: ${by}
+                <img src="/tongue-technews/src/assets/img/condividi-30-dark.png" id='share-search'>
+                </h5><br>
                 <div class="card-body">
                     <h3 class="card-title"><a href="${url}">${title}</a></h3>
                     <p class="card-text">${url}</p>
@@ -53,6 +55,19 @@ function createCardSearch(id,by,title,url,score,comm){
                       btnTranslate.addEventListener('touchstart', translate);
                       btnTranslate.addEventListener('touchend', () => {
                       titleElement.textContent = title;
+                      })
+                      //aggiunta LISTENER per condividere la notizia
+                      const shareTop = document.querySelector('#share-search')
+                      shareTop.addEventListener('click',()=>{
+                        if(navigator.share){
+                          navigator.share({
+                            title: title,
+                            text: "Guarda questa News Tecnologica!",
+                            url: url
+                          })
+                        }else{
+                          console.log('errore nella condivisione')
+                        }
                       })
 }
 
