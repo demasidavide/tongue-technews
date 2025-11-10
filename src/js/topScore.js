@@ -84,11 +84,14 @@ async function topNews(){
                 const dataItem = await responseItem.json();
                 createCardTop(dataItem.id,dataItem.by,dataItem.title,dataItem.url,dataItem.score,dataItem.descendants)
             }catch{
+                 
                 console.log('errore nel caricamento delle card')
             }
     }
     }catch(e){
         console.log('card non create')
+        const alertTop = document.getElementById('alert-top')
+        alertTop.classList.remove('visually-hidden')
 
     }
 }
