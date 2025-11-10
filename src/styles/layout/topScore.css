@@ -42,7 +42,7 @@ main > .top-news > .carousel-container > .card-top > .card-header {
   display: flex;
   justify-content: space-between;
 }
-main > .top-news > .carousel-container > .card-top > .card-header > #share-top {
+main > .top-news > .carousel-container > .card-top > .card-header > .share-top {
   width: 30px;
   cursor: pointer;
 }

@@ -7,7 +7,7 @@ function createCardSearch(id,by,title,url,score,comm){
     cardSearch.className='card-search';
     cardSearch.innerHTML=`
                 <h5 class="card-header">By: ${by}
-                <img src="/tongue-technews/src/assets/img/condividi-30-dark.png" id='share-search'>
+                <img src="/tongue-technews/src/assets/img/condividi-30-dark.png" class='share-search'>
                 </h5><br>
                 <div class="card-body">
                     <h3 class="card-title"><a href="${url}" target=_blank>${title}</a></h3>
@@ -57,7 +57,7 @@ function createCardSearch(id,by,title,url,score,comm){
                       titleElement.textContent = title;
                       })
                       //aggiunta LISTENER per condividere la notizia
-                      const shareTop = document.querySelector('#share-search')
+                      const shareTop = cardSearch.querySelector('.share-search')
                       shareTop.addEventListener('click',()=>{
                         if(navigator.share){
                           navigator.share({

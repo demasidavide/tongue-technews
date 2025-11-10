@@ -5,7 +5,7 @@ function createCard(id,by,title,url,score,comm){
   const card = document.createElement('div');
   card.className='card';
   card.innerHTML= `<h5 class="card-header">${by}</h5>
-                    <img src="/tongue-technews/src/assets/img/condividi-30-light.png" id='share'>
+                    <img src="/tongue-technews/src/assets/img/condividi-30-light.png" class='share'>
                 <div class="card-body">
                     <h3 class="card-title"><a href="${url}" target=_blank>${title}</a></h3>
                     <p class="card-text">${url}</p>
@@ -56,7 +56,7 @@ function createCard(id,by,title,url,score,comm){
                       })
 
                       //aggiunta LISTENER per condividere la notizia
-                      const share = document.querySelector('#share')
+                      const share = card.querySelector('.share')
                       share.addEventListener('click',()=>{
                         if(navigator.share){
                           navigator.share({
@@ -95,7 +95,7 @@ fetch(apiBase + 'newstories.json')
       //riporta l utente alla stessa posizione dopo il reload automatico della pagina di riga 71
       window.scrollTo(0,scrollPosition);
     })
-    .catch(error=>console.error('Errore,imposibile creare la Card'));
+    .catch(error=>console.error('Errore,impossibile creare la Card'));
     });
   })
 .catch(error=>console.log('Errore,impossibile procedere'));
@@ -110,9 +110,9 @@ loadnews(false);
 
 //carica notizie all avvio
 loadnews(true);
+
 //ricarica ogni 6min
 setInterval(loadnews, 360000);
-
 
 
 

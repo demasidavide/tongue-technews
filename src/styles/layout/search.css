@@ -81,7 +81,7 @@ main > .search-news > .container-card-search > .card-search > .card-header {
   display: flex;
   justify-content: space-between;
 }
-main > .search-news > .container-card-search > .card-search > .card-header > #share-news {
+main > .search-news > .container-card-search > .card-search > .card-header > .share-news {
   width: 30px;
   cursor: pointer;
 }

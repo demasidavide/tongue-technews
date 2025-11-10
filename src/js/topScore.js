@@ -4,7 +4,7 @@ function createCardTop(id,by,title,url,score,comm){
     const cardTop = document.createElement('div');
     cardTop.className = 'card-top';
     cardTop.innerHTML = `<h5 class="card-header">By:${by}
-                        <img src="/tongue-technews/src/assets/img/condividi-30-dark.png" id='share-top'>
+                        <img src="/tongue-technews/src/assets/img/condividi-30-dark.png" class='share-top'>
                         </h5>
                     <div class="card-body">
                     <img src="/tongue-technews/src/assets/img/garanzia-48.png">
@@ -56,7 +56,7 @@ function createCardTop(id,by,title,url,score,comm){
                       titleElement.textContent = title;
                       })
                       //aggiunta LISTENER per condividere la notizia
-                      const shareTop = document.querySelector('#share-top')
+                      const shareTop = cardTop.querySelector('.share-top')
                       shareTop.addEventListener('click',()=>{
                         if(navigator.share){
                           navigator.share({
