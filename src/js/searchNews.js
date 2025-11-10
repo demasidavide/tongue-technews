@@ -166,7 +166,6 @@ filter.addEventListener('change',(e)=>{
                 textSearch.value='';
     }
 })
-
 async function searchNews() {
     try{
     const responseSearch = await fetch(apiB + searchValue);
