@@ -13,7 +13,8 @@ main > .search-news > .container-search {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 250px;
+  margin-top: 50px;
+  height: 120px;
 }
 main > .search-news > .container-search > .title-search {
   font-family: "Montserrat", sans-serif;
@@ -33,6 +34,21 @@ main > .search-news > .container-search > .input-search:focus {
   outline: none;
   border: solid 2px #6cf9f4;
   box-shadow: 2px 2px 10px #6cf9f4;
+}
+main > .search-news > .btn-group > .btn-check:checked + .btn-outline {
+  background-color: #106996;
+  color: #d2d9d9;
+}
+main > .search-news > .btn-group > .btn-outline {
+  font-family: "Inter", sans-serif;
+  color: #14252F;
+  font-weight: bold;
+  border: solid 2px #14252F;
+  margin: 0px 5px 0px 5px;
+}
+main > .search-news > .btn-group > .btn-outline:hover {
+  background-color: #6cf9f4;
+  color: #14252F;
 }
 main > .search-news > .container-card-search {
   display: flex;

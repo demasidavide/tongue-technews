@@ -13,7 +13,8 @@ main{
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 250px;
+            margin-top: 50px;
+            height: 120px;
             >.title-search{
                 font-family: variables.$title;
                 color: variables.$bg-color;
@@ -34,6 +35,27 @@ main{
                 }
             }
         }
+        >.btn-group{
+            
+            >.btn-check:checked + .btn-outline{
+                background-color: variables.$nd-color;
+                color: variables.$footer-color;
+            }
+            >.btn-outline{
+                font-family: variables.$main;
+                color: variables.$bg-color;
+                font-weight: bold;
+                border: solid 2px variables.$bg-color;
+                margin: 0px 5px 0px 5px;
+                &:hover{
+                    background-color: variables.$btn-color;
+                    color: variables.$bg-color;
+                }
+            }
+        }
+
+
+
         >.container-card-search{
             display: flex;
             flex-direction: column;
@@ -57,11 +79,11 @@ main{
                 display: flex;
                 justify-content: space-between;
 
-                >#share-news{
-                width:30px;
-                cursor: pointer;
-            }
-            }
+                    >#share-news{
+                    width:30px;
+                    cursor: pointer;
+                    }
+                }
 
             >.card-body{
                 
