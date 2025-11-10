@@ -44,6 +44,10 @@ main{
                 color:variables.$footer-color;
                 display: flex;
                 justify-content: space-between;
+                >.fav-top{
+                    width:30px;
+                    filter: brightness(5.5);
+                }
 
                 >.share-top{
                 width:30px;

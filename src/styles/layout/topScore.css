@@ -42,6 +42,10 @@ main > .top-news > .carousel-container > .card-top > .card-header {
   display: flex;
   justify-content: space-between;
 }
+main > .top-news > .carousel-container > .card-top > .card-header > .fav-top {
+  width: 30px;
+  filter: brightness(5.5);
+}
 main > .top-news > .carousel-container > .card-top > .card-header > .share-top {
   width: 30px;
   cursor: pointer;

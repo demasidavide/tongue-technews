@@ -4,6 +4,7 @@ function createCardTop(id,by,title,url,score,comm){
     const cardTop = document.createElement('div');
     cardTop.className = 'card-top';
     cardTop.innerHTML = `<h5 class="card-header">By: ${by}
+                        <img src="/tongue-technews/src/assets/img/preferiti-d48.png" class='fav-top'>
                         <img src="/tongue-technews/src/assets/img/condividi-30-dark.png" class='share-top'>
                         </h5>
                     <div class="card-body">
