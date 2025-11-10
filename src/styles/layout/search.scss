@@ -36,6 +36,7 @@ main{
             }
         }
         >.btn-group{
+            margin-bottom: 20px;
             
             >.btn-check:checked + .btn-outline{
                 background-color: variables.$nd-color;

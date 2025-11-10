@@ -8,7 +8,7 @@ function createCardTop(id,by,title,url,score,comm){
                         </h5>
                     <div class="card-body">
                     <img src="/tongue-technews/src/assets/img/garanzia-48.png">
-                    <h3 class="card-title"><a href="${url}">${title}</a></h3>
+                    <h3 class="card-title"><a href="${url}" target=_blank>${title}</a></h3>
                     <p class="card-text">${url}</p>
                     <button type="button" class="btn btn-primary position-relative">
                         Points

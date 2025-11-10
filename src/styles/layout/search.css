@@ -35,6 +35,9 @@ main > .search-news > .container-search > .input-search:focus {
   border: solid 2px #6cf9f4;
   box-shadow: 2px 2px 10px #6cf9f4;
 }
+main > .search-news > .btn-group {
+  margin-bottom: 20px;
+}
 main > .search-news > .btn-group > .btn-check:checked + .btn-outline {
   background-color: #106996;
   color: #d2d9d9;

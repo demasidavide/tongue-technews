@@ -10,7 +10,7 @@ function createCardSearch(id,by,title,url,score,comm){
                 <img src="/tongue-technews/src/assets/img/condividi-30-dark.png" id='share-search'>
                 </h5><br>
                 <div class="card-body">
-                    <h3 class="card-title"><a href="${url}">${title}</a></h3>
+                    <h3 class="card-title"><a href="${url}" target=_blank>${title}</a></h3>
                     <p class="card-text">${url}</p>
                     <button type="button" class="btn btn-primary position-relative">
                         Points
@@ -134,7 +134,7 @@ textSearch.addEventListener('input',(e)=>{
 
 async function loadMoreSearchNews(){
         try{
-    const responseSearch = await fetch(apiBaseAl + searchValue);
+    const responseSearch = await fetch(apiB + searchValue);
     const data = await responseSearch.json();
     const ten = data.hits.slice(numCardGenerated - 10, numCardGenerated);
 
@@ -150,13 +150,27 @@ async function loadMoreSearchNews(){
 
 
 //prova fetch con algolia
-
-const apiBaseAl = 'https://hn.algolia.com/api/v1/search?query='
+const apiBaseA = 'https://hn.algolia.com/api/v1/search?tags=story,author_'
+const apiBaseT = 'https://hn.algolia.com/api/v1/search?query='
+let apiB = apiBaseT
+//const apiBaseAl = 'https://hn.algolia.com/api/v1/search?tags=story&restrictSearchableAttributes=title&query='
 let numCardGenerated = 10
+const filter = document.querySelector('.btn-group');
+filter.addEventListener('change',(e)=>{
+    if(e.target.id ==='btnradio2'){
+        apiB = apiBaseA;
+            parentSearch.innerHTML="";
+
+    }else{
+        apiB = apiBaseT;
+            parentSearch.innerHTML="";
+
+    }
+})
 
 async function searchNews() {
     try{
-    const responseSearch = await fetch(apiBaseAl + searchValue);
+    const responseSearch = await fetch(apiB + searchValue);
     const data = await responseSearch.json();
     const ten = data.hits.slice(numCardGenerated - 10, numCardGenerated);
     parentSearch.innerHTML="";

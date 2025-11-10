@@ -7,7 +7,7 @@ function createCard(id,by,title,url,score,comm){
   card.innerHTML= `<h5 class="card-header">${by}</h5>
                     <img src="/tongue-technews/src/assets/img/condividi-30-light.png" id='share'>
                 <div class="card-body">
-                    <h3 class="card-title"><a href="${url}">${title}</a></h3>
+                    <h3 class="card-title"><a href="${url}" target=_blank>${title}</a></h3>
                     <p class="card-text">${url}</p>
                     <button type="button" class="btn btn-primary position-relative">
                         Points
