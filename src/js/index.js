@@ -4,8 +4,9 @@ const parent = document.querySelector('.news');
 function createCard(id,by,title,url,score,comm){
   const card = document.createElement('div');
   card.className='card';
-  card.innerHTML= `<h5 class="card-header">${by}</h5>
+  card.innerHTML= `<h5 class="card-header">By: ${by}
                     <img src="/tongue-technews/src/assets/img/condividi-30-light.png" class='share'>
+                    </h5>
                 <div class="card-body">
                     <h3 class="card-title"><a href="${url}" target=_blank>${title}</a></h3>
                     <p class="card-text">${url}</p>
@@ -98,12 +99,11 @@ fetch(apiBase + 'newstories.json')
     .catch(error=>console.error('Errore,impossibile creare la Card'));
     });
   })
-.catch(error=>{
+.catch(error => {
         const alertNew = document.getElementById('alert-new')
-        alertNew.classList.remove('visually-hidden')
-        console.log('Errore,impossibile procedere')
-})
-
+        alertNew.classList.remove('visually-hidden');
+        console.log('Errore,impossibile procedere');
+});
 }
 
 //funzione per caricare piu notizie

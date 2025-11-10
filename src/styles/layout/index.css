@@ -40,31 +40,28 @@ html, body {
   font-family: "Montserrat", sans-serif;
 }
 
-main > .news, main .top-news {
+main > .news {
   max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin-bottom: 20px;
 }
-main > .news > .card, main .top-news > .card {
+main > .news > .card {
   box-sizing: border-box;
   background-color: #d2d9d9;
   width: 85%;
   border-radius: 5px;
-  margin: 10px 0px 20px 0px;
+  margin: 20px auto;
   border: solid 1px #14252F;
   box-shadow: 1px 1px 8px #d2d9d9;
 }
-main > .news > .card > img, main .top-news > .card > img {
+main > .news > .card > .card-header {
+  display: flex;
+  justify-content: space-between;
+}
+main > .news > .card > .card-header > .share {
   width: 30px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
   cursor: pointer;
 }
-main > .news > .card > .card-body > .card-title, main .top-news > .card > .card-body > .card-title {
+main > .news > .card > .card-body > .card-title {
   text-decoration: underline;
   font-family: "Montserrat", sans-serif;
   font-size: 1.5em;
@@ -72,29 +69,29 @@ main > .news > .card > .card-body > .card-title, main .top-news > .card > .card-
   padding: 0px 5px 5px 5px;
   border-bottom: solid 2px #14252F;
 }
-main > .news > .card > .card-body > .card-title > a, main .top-news > .card > .card-body > .card-title > a {
+main > .news > .card > .card-body > .card-title > a {
   text-decoration: none;
   color: #14252F;
 }
-main > .news > .card > .card-body > .btn, main .top-news > .card > .card-body > .btn {
+main > .news > .card > .card-body > .btn {
   background-color: #106996;
   font-family: "Inter", sans-serif;
   margin-right: 10px;
   width: -moz-fit-content;
   width: fit-content;
 }
-main > .news > .card > .card-body > .btn > img, main .top-news > .card > .card-body > .btn > img {
+main > .news > .card > .card-body > .btn > img {
   width: 30px;
 }
-main > .news > .card > .card-body > .btn > span, main .top-news > .card > .card-body > .btn > span {
+main > .news > .card > .card-body > .btn > span {
   background-color: #6cf9f4;
   color: #14252F;
 }
-main > .news > .card > .card-body > .btn > a, main .top-news > .card > .card-body > .btn > a {
+main > .news > .card > .card-body > .btn > a {
   text-decoration: none;
   color: #d2d9d9;
 }
-main > .news > .card > .card-body > .btn > a > span, main .top-news > .card > .card-body > .btn > a > span {
+main > .news > .card > .card-body > .btn > a > span {
   background-color: #6cf9f4;
   color: #14252F;
 }

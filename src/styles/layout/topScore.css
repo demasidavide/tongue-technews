@@ -84,13 +84,4 @@ main > .top-news > .carousel-container > .card-top > .card-body > .btn > a {
 main > .top-news > .carousel-container > .card-top > .card-body > .btn > a > span {
   background-color: #6cf9f4;
   color: #14252F;
-}
-
-@keyframes scroll-infinite {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
 }/*# sourceMappingURL=topScore.css.map */
