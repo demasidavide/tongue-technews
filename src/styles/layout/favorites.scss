@@ -1,6 +1,96 @@
+@use '../abstract/variables';
+
 main{
     >.favorites{
         background-color: variables.$bg-color;
         height:auto;
+        
 
-    }}
+        >.card-favorites{
+            height: fit-content;
+            min-width: 300px;
+            box-sizing: border-box;           
+            background-color: variables.$bg-color;
+            width: 85%;
+            border-radius: 5px;
+            margin:40px auto;
+            border:solid 1px variables.$footer-color;
+            box-shadow: 1px 1px 18px 5px variables.$btn-color;
+            padding: 3%;
+            >.card-header{
+                color:variables.$footer-color;
+                display: flex;
+                justify-content: space-between;
+                >#heartIcon{
+                    width:40px;
+                    height: 35px;
+                    fill:none;
+                    stroke: variables.$footer-color;
+                    stroke-width: 1.5px;
+                    transition: all 0.5s ease;
+                    cursor: pointer;
+                    
+                    >.heart{
+                    fill:none;
+                    transition: all 0.5s ease;
+                }
+                >.active{
+                    fill: red;
+                    stroke: red;
+                }
+            }
+
+                >.share-top{
+                width:30px;
+                cursor: pointer;
+            }
+            }
+            >.card-body{
+                
+                >.card-title{
+                    text-decoration: underline;
+                    font-family: variables.$title;
+                    color:variables.$footer-color;
+                    font-size: 1.3em;
+                    font-weight: bold;
+                    padding: 0px 5px 5px 5px;
+                    border-bottom: solid 2px variables.$bg-color;
+                    >a{
+                        text-decoration: none;
+                        color: variables.$footer-color;
+                    }
+                }
+                >.card-text{
+                    color: variables.$footer-color;
+                    word-wrap: break-word;
+                }
+                >.btn{
+                    background-color: variables.$nd-color;
+                    font-family: variables.$main;
+                    margin-right: 10px;
+                    width: fit-content;
+                
+                >img{
+                    width:30px;
+                    
+                }
+                >span{
+                    background-color: variables.$btn-color;
+                    color: variables.$bg-color;
+                }
+                >a{
+                    text-decoration: none;
+                    color: variables.$footer-color;
+                    >span{
+                    background-color: variables.$btn-color;
+                    color: variables.$bg-color;
+                        }
+                }
+
+            }
+
+            }
+        }
+        }
+
+    }

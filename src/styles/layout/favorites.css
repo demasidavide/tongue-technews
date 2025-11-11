@@ -1,1 +1,82 @@
-/*# sourceMappingURL=favorites.css.map */
+main > .favorites {
+  background-color: #14252F;
+  height: auto;
+}
+main > .favorites > .card-favorites {
+  height: -moz-fit-content;
+  height: fit-content;
+  min-width: 300px;
+  box-sizing: border-box;
+  background-color: #14252F;
+  width: 85%;
+  border-radius: 5px;
+  margin: 40px auto;
+  border: solid 1px #d2d9d9;
+  box-shadow: 1px 1px 18px 5px #6cf9f4;
+  padding: 3%;
+}
+main > .favorites > .card-favorites > .card-header {
+  color: #d2d9d9;
+  display: flex;
+  justify-content: space-between;
+}
+main > .favorites > .card-favorites > .card-header > #heartIcon {
+  width: 40px;
+  height: 35px;
+  fill: none;
+  stroke: #d2d9d9;
+  stroke-width: 1.5px;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+main > .favorites > .card-favorites > .card-header > #heartIcon > .heart {
+  fill: none;
+  transition: all 0.5s ease;
+}
+main > .favorites > .card-favorites > .card-header > #heartIcon > .active {
+  fill: red;
+  stroke: red;
+}
+main > .favorites > .card-favorites > .card-header > .share-top {
+  width: 30px;
+  cursor: pointer;
+}
+main > .favorites > .card-favorites > .card-body > .card-title {
+  text-decoration: underline;
+  font-family: "Montserrat", sans-serif;
+  color: #d2d9d9;
+  font-size: 1.3em;
+  font-weight: bold;
+  padding: 0px 5px 5px 5px;
+  border-bottom: solid 2px #14252F;
+}
+main > .favorites > .card-favorites > .card-body > .card-title > a {
+  text-decoration: none;
+  color: #d2d9d9;
+}
+main > .favorites > .card-favorites > .card-body > .card-text {
+  color: #d2d9d9;
+  word-wrap: break-word;
+}
+main > .favorites > .card-favorites > .card-body > .btn {
+  background-color: #106996;
+  font-family: "Inter", sans-serif;
+  margin-right: 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+main > .favorites > .card-favorites > .card-body > .btn > img {
+  width: 30px;
+}
+main > .favorites > .card-favorites > .card-body > .btn > span {
+  background-color: #6cf9f4;
+  color: #14252F;
+}
+main > .favorites > .card-favorites > .card-body > .btn > a {
+  text-decoration: none;
+  color: #d2d9d9;
+}
+main > .favorites > .card-favorites > .card-body > .btn > a > span {
+  background-color: #6cf9f4;
+  color: #14252F;
+}/*# sourceMappingURL=favorites.css.map */

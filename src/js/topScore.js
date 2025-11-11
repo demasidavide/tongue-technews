@@ -1,5 +1,6 @@
 //importa funzione per salvare id in localStorage
-import { saveFavoritesInStorage } from './favorites.js';
+import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
+import { loadFavorites } from './favorites.js';
 
 //funzione per creare card-top
 const parentTop = document.querySelector('.carousel-container')
@@ -81,18 +82,25 @@ function createCardTop(id,by,title,url,score,comm){
                         const svgHeart = headerTop.querySelector('.heart')
                         svgHeart.classList.toggle('active');
                         //ok
+                        console.log('ID corrente:', id);
                         let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || []; // Recupera preferiti o array vuoto
+                        console.log('Array iniziale:', favoritesArray);
                         
                         if(svgHeart.classList.contains('active')){
                             if(!favoritesArray.includes(id)){
                                 favoritesArray.push(id);
+                                //localStorage.setItem('favorites',JSON.stringify(favoritesArray));
+                                saveFavoritesInStorage(favoritesArray);
+                                console.log('preferito salvato')
+                                loadFavorites();
                             }
                         }else{
-                             favoritesArray = favoritesArray.filter(favId => favId !== id);   
+                             //favoritesArray = favoritesArray.filter(favId => favId !== id); 
+                             //localStorage.setItem('favorites',JSON.stringify(favoritesArray));  
+                            favoritesArray = removeFavorites(id); 
+                            console.log('Rimosso:', favoritesArray);
+                            loadFavorites();
                             }
-                        
-                        saveFavoritesInStorage(favoritesArray);
-                        
                     }
                     })
 }
