@@ -42,9 +42,22 @@ main > .top-news > .carousel-container > .card-top > .card-header {
   display: flex;
   justify-content: space-between;
 }
-main > .top-news > .carousel-container > .card-top > .card-header > .fav-top {
-  width: 30px;
-  filter: brightness(5.5);
+main > .top-news > .carousel-container > .card-top > .card-header > #heartIcon {
+  width: 40px;
+  height: 35px;
+  fill: none;
+  stroke: #d2d9d9;
+  stroke-width: 1.5px;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+main > .top-news > .carousel-container > .card-top > .card-header > #heartIcon > .heart {
+  fill: none;
+  transition: all 0.5s ease;
+}
+main > .top-news > .carousel-container > .card-top > .card-header > #heartIcon > .active {
+  fill: red;
+  stroke: red;
 }
 main > .top-news > .carousel-container > .card-top > .card-header > .share-top {
   width: 30px;

@@ -1,10 +1,16 @@
+//importa funzione per salvare id in localStorage
+import { saveFavoritesInStorage } from './favorites.js';
+
 //funzione per creare card-top
 const parentTop = document.querySelector('.carousel-container')
 function createCardTop(id,by,title,url,score,comm){
     const cardTop = document.createElement('div');
     cardTop.className = 'card-top';
     cardTop.innerHTML = `<h5 class="card-header">By: ${by}
-                        <img src="/tongue-technews/src/assets/img/preferiti-d48.png" class='fav-top'>
+                         <svg id="heartIcon" viewBox="0 0 24 24" width="60" height="60">
+                            <path class="heart" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09
+                                C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5 c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
                         <img src="/tongue-technews/src/assets/img/condividi-30-dark.png" class='share-top'>
                         </h5>
                     <div class="card-body">
@@ -56,9 +62,10 @@ function createCardTop(id,by,title,url,score,comm){
                       btnTranslate.addEventListener('touchend', () => {
                       titleElement.textContent = title;
                       })
-                      //aggiunta LISTENER per condividere la notizia
-                      const shareTop = cardTop.querySelector('.share-top')
-                      shareTop.addEventListener('click',()=>{
+                      //aggiunta LISTENER su card header per condividere la notizia e per preferito
+                      const headerTop = cardTop.querySelector('.card-header')
+                      headerTop.addEventListener('click',(e)=>{
+                        if(e.target.classList.contains('share-top')){
                         if(navigator.share){
                           navigator.share({
                             title: title,
@@ -68,7 +75,26 @@ function createCardTop(id,by,title,url,score,comm){
                         }else{
                           console.log('errore nella condivisione')
                         }
-                      })
+                        //fino a qui parte ok condivisione
+
+                    }else if(e.target.closest('#heartIcon')){
+                        const svgHeart = headerTop.querySelector('.heart')
+                        svgHeart.classList.toggle('active');
+                        //ok
+                        let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || []; // Recupera preferiti o array vuoto
+                        
+                        if(svgHeart.classList.contains('active')){
+                            if(!favoritesArray.includes(id)){
+                                favoritesArray.push(id);
+                            }
+                        }else{
+                             favoritesArray = favoritesArray.filter(favId => favId !== id);   
+                            }
+                        
+                        saveFavoritesInStorage(favoritesArray);
+                        
+                    }
+                    })
 }
 
 //chiamata per top news( della giornata?ultime 24 ore?)
