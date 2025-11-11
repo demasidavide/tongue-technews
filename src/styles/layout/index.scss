@@ -60,6 +60,25 @@ main{
             >.card-header{
                 display: flex;
                 justify-content: space-between;
+                >#heartIcon{
+                    width:40px;
+                    height: 35px;
+                    fill:none;
+                    stroke: variables.$bg-color;
+                    stroke-width: 1.5px;
+                    transition: all 0.5s ease;
+                    margin-left: auto; 
+                    cursor: pointer;
+                    
+                    >.heart{
+                    fill:none;
+                    transition: all 0.5s ease;
+                }
+                >.active{
+                    fill: red;
+                    stroke: red;
+                }
+            }
             >.share{
                 width:30px;
                 cursor: pointer;

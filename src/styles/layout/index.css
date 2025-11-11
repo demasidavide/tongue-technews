@@ -57,6 +57,24 @@ main > .news > .card > .card-header {
   display: flex;
   justify-content: space-between;
 }
+main > .news > .card > .card-header > #heartIcon {
+  width: 40px;
+  height: 35px;
+  fill: none;
+  stroke: #14252F;
+  stroke-width: 1.5px;
+  transition: all 0.5s ease;
+  margin-left: auto;
+  cursor: pointer;
+}
+main > .news > .card > .card-header > #heartIcon > .heart {
+  fill: none;
+  transition: all 0.5s ease;
+}
+main > .news > .card > .card-header > #heartIcon > .active {
+  fill: red;
+  stroke: red;
+}
 main > .news > .card > .card-header > .share {
   width: 30px;
   cursor: pointer;
