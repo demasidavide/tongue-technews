@@ -4,9 +4,11 @@ const title = document.querySelector('.title')
   const sectionNews = document.querySelector('.news')
   const containerLoad = document.querySelector('.container-load')
   const sectionSearch = document.querySelector('.search-news')
+  const titleNews = document.querySelector('.title-news')
 
   function hideSection(){
     title.textContent = 'Preferiti salvati'
+    titleNews.style.display = 'none';
     sectionTop.style.display ='none';
     sectionNews.style.display ='none';
     containerLoad.style.display ='none';
@@ -14,7 +16,8 @@ const title = document.querySelector('.title')
   }
 
   function showSection(){
-    title.textContent = 'Le top News'
+    title.textContent = 'Le top News';
+    titleNews.style.display = 'block';
     sectionTop.style.display ='block';
     sectionNews.style.display ='block';
     containerLoad.style.display ='block';

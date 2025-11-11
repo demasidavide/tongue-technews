@@ -41,7 +41,7 @@ main{
             box-shadow: 1px 1px 18px 5px variables.$btn-color;
             padding: 3%;
             >.card-header{
-                color:variables.$footer-color;
+                color:variables.$footer-color;  
                 display: flex;
                 justify-content: space-between;
                 >#heartIcon{
@@ -50,6 +50,7 @@ main{
                     fill:none;
                     stroke: variables.$footer-color;
                     stroke-width: 1.5px;
+                    margin-left: auto;
                     transition: all 0.5s ease;
                     cursor: pointer;
                     

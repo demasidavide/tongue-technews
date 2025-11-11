@@ -1,3 +1,7 @@
+//importo funzioni per salvare preferiti
+import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
+import { loadFavorites } from './favorites.js';
+
 //creazione card per news ricercate
 
 const parentSearch = document.querySelector('.container-card-search')
@@ -7,6 +11,10 @@ function createCardSearch(id,by,title,url,score,comm){
     cardSearch.className='card-search';
     cardSearch.innerHTML=`
                 <h5 class="card-header">By: ${by}
+                <svg id="heartIcon" viewBox="0 0 24 24" width="60" height="60">
+                            <path class="heart" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09
+                                C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5 c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
                 <img src="/tongue-technews/src/assets/img/condividi-30-dark.png" class='share-search'>
                 </h5><br>
                 <div class="card-body">
@@ -57,8 +65,9 @@ function createCardSearch(id,by,title,url,score,comm){
                       titleElement.textContent = title;
                       })
                       //aggiunta LISTENER per condividere la notizia
-                      const shareTop = cardSearch.querySelector('.share-search')
-                      shareTop.addEventListener('click',()=>{
+                      const headerTop = cardSearch.querySelector('.card-header')
+                      headerTop.addEventListener('click',(e)=>{
+                        if(e.target.classList.contains('share-search')){
                         if(navigator.share){
                           navigator.share({
                             title: title,
@@ -68,7 +77,33 @@ function createCardSearch(id,by,title,url,score,comm){
                         }else{
                           console.log('errore nella condivisione')
                         }
-                      })
+                        //fino a qui parte ok condivisione
+
+                    }else if(e.target.closest('#heartIcon')){
+                        const svgHeart = headerTop.querySelector('.heart')
+                        svgHeart.classList.toggle('active');
+                        //ok
+                        console.log('ID corrente:', id);
+                        let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || []; // Recupera preferiti o array vuoto
+                        console.log('Array iniziale:', favoritesArray);
+                        
+                        if(svgHeart.classList.contains('active')){
+                            if(!favoritesArray.includes(id)){
+                                favoritesArray.push(id);
+                                //localStorage.setItem('favorites',JSON.stringify(favoritesArray));
+                                saveFavoritesInStorage(favoritesArray);
+                                console.log('preferito salvato')
+                                loadFavorites();
+                            }
+                        }else{
+                             //favoritesArray = favoritesArray.filter(favId => favId !== id); 
+                             //localStorage.setItem('favorites',JSON.stringify(favoritesArray));  
+                            favoritesArray = removeFavorites(id); 
+                            console.log('Rimosso:', favoritesArray);
+                            loadFavorites();
+                            }
+                    }
+                    })
 }
 
 

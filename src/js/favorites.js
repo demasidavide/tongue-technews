@@ -1,5 +1,5 @@
 //importo funzioni di rimozione favorito
-import { removeFavorites } from './saveLoadfavorites.js';
+import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
 
 //crea card per preferiti
 const parentFav = document.querySelector('.favorites')
@@ -85,9 +85,6 @@ function createCardFavorites(id,by,title,url,score,comm){
                                           }
                                           })
 }
-        
-           
-
 //prova fetch con id salvati
 const apiFavorites = 'https://hacker-news.firebaseio.com/v0/item/';
 const favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];

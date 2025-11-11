@@ -85,7 +85,25 @@ main{
                 color:variables.$footer-color;
                 display: flex;
                 justify-content: space-between;
-
+                >#heartIcon{
+                    width:40px;
+                    height: 35px;
+                    fill:none;
+                    stroke: variables.$footer-color;
+                    stroke-width: 1.5px;
+                    margin-left: auto;
+                    transition: all 0.5s ease;
+                    cursor: pointer;
+                    
+                    >.heart{
+                    fill:none;
+                    transition: all 0.5s ease;
+                }
+                >.active{
+                    fill: red;
+                    stroke: red;
+                }
+            }
                     >.share-news{
                     width:30px;
                     cursor: pointer;

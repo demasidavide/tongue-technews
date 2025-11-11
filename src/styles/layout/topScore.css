@@ -48,6 +48,7 @@ main > .top-news > .carousel-container > .card-top > .card-header > #heartIcon {
   fill: none;
   stroke: #d2d9d9;
   stroke-width: 1.5px;
+  margin-left: auto;
   transition: all 0.5s ease;
   cursor: pointer;
 }

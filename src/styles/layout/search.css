@@ -82,6 +82,24 @@ main > .search-news > .container-card-search > .card-search > .card-header {
   display: flex;
   justify-content: space-between;
 }
+main > .search-news > .container-card-search > .card-search > .card-header > #heartIcon {
+  width: 40px;
+  height: 35px;
+  fill: none;
+  stroke: #d2d9d9;
+  stroke-width: 1.5px;
+  margin-left: auto;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+main > .search-news > .container-card-search > .card-search > .card-header > #heartIcon > .heart {
+  fill: none;
+  transition: all 0.5s ease;
+}
+main > .search-news > .container-card-search > .card-search > .card-header > #heartIcon > .active {
+  fill: red;
+  stroke: red;
+}
 main > .search-news > .container-card-search > .card-search > .card-header > .share-news {
   width: 30px;
   cursor: pointer;
