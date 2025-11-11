@@ -79,10 +79,9 @@ function createCardFavorites(id,by,title,url,score,comm){
                       
                                           }else if(e.target.closest('#heartIcon')){
                                               console.log('concalma');
-                                              //removeFavorites(id);
-                                              //cardFavorites.remove();
-                                              //saveFavoritesInStorage(favoritesArray);
-                                              
+                                              removeFavorites(id);
+                                              cardFavorites.remove();
+                                              saveFavoritesInStorage(favoritesArray);
                                           }
                                           })
 }
@@ -95,6 +94,7 @@ const favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
 console.log('id recuperati:passaggio1',favoritesArray)
 
 export async function loadFavorites(){
+    const favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
 
     if(favoritesArray.length === 0){
         console.log('array vuoto')
@@ -110,7 +110,6 @@ export async function loadFavorites(){
     }catch(e){
         console.log('impossibile caricare',e)
     }
-    
 }
     loadFavorites();
 
