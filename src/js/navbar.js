@@ -1,3 +1,4 @@
+import { loadFavorites } from "./favorites.js";
 
 const title = document.querySelector('.title')
   const sectionTop = document.querySelector('.top-news')
@@ -50,5 +51,7 @@ nav.addEventListener('click', (e) => {
   }
   if(e.target.id === 'favorites'){
     favoritesClick();
+    loadFavorites();
+    console.log('chiamata1')
     }
 });

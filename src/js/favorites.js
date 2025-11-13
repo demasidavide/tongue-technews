@@ -78,35 +78,36 @@ function createCardFavorites(id,by,title,url,score,comm){
                                               //fino a qui parte ok condivisione
                       
                                           }else if(e.target.closest('#heartIcon')){
-                                              console.log('concalma');
                                               removeFavorites(id);
                                               cardFavorites.remove();
-                                              saveFavoritesInStorage(favoritesArray);
+                                              //saveFavoritesInStorage(favoritesArray);
                                           }
                                           })
 }
 //prova fetch con id salvati
 const apiFavorites = 'https://hacker-news.firebaseio.com/v0/item/';
 const favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
-console.log('id recuperati:passaggio1',favoritesArray)
+console.log('id recuperati:',favoritesArray)
 
 export async function loadFavorites(){
     const favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
+    const uniqueArray = [...new Set(favoritesArray)];
+    console.log( 'array unico:',uniqueArray)
 
-    if(favoritesArray.length === 0){
+    if(uniqueArray.length === 0){
         console.log('array vuoto')
         return;
     }
-    for(const id of favoritesArray)
+    for(const id of uniqueArray)
         try{
-    
         const resp = await fetch(apiFavorites + id +'.json')
         const data= await resp.json();
-     createCardFavorites(data.id,data.by,data.title,data.url,data.score,data.descendants)   
+     createCardFavorites(data.id,data.by,data.title,data.url,data.score,data.descendants)
+     removeFavorites(data.id);   
     
     }catch(e){
         console.log('impossibile caricare',e)
     }
 }
-    loadFavorites();
+    //loadFavorites();
 

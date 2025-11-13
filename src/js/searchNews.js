@@ -93,14 +93,14 @@ function createCardSearch(id,by,title,url,score,comm){
                                 //localStorage.setItem('favorites',JSON.stringify(favoritesArray));
                                 saveFavoritesInStorage(favoritesArray);
                                 console.log('preferito salvato')
-                                loadFavorites();
+                                //loadFavorites();
                             }
                         }else{
                              //favoritesArray = favoritesArray.filter(favId => favId !== id); 
                              //localStorage.setItem('favorites',JSON.stringify(favoritesArray));  
                             favoritesArray = removeFavorites(id); 
                             console.log('Rimosso:', favoritesArray);
-                            loadFavorites();
+                            //loadFavorites();
                             }
                     }
                     })

@@ -88,18 +88,17 @@ function createCard(id,by,title,url,score,comm){
                         
                         if(svgHeart.classList.contains('active')){
                             if(!favoritesArray.includes(id)){
+
                                 favoritesArray.push(id);
-                                //localStorage.setItem('favorites',JSON.stringify(favoritesArray));
                                 saveFavoritesInStorage(favoritesArray);
                                 console.log('preferito salvato')
-                                loadFavorites();
+                                
                             }
                         }else{
-                             //favoritesArray = favoritesArray.filter(favId => favId !== id); 
-                             //localStorage.setItem('favorites',JSON.stringify(favoritesArray));  
+                               
                             favoritesArray = removeFavorites(id); 
                             console.log('Rimosso:', favoritesArray);
-                            loadFavorites();
+                           
                             }
                     }
                     })
