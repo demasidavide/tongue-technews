@@ -74,6 +74,7 @@ main > .search-news > .alert-search.hide {
   display: none;
 }
 main > .search-news > .container-card-search {
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -165,6 +166,7 @@ main > .search-news > .container-load-two {
   justify-content: center;
 }
 main > .search-news > .container-load-two > .load-more-two {
+  margin-bottom: 20px;
   background-color: #106996;
   color: #d2d9d9;
   font-family: "Inter", sans-serif;

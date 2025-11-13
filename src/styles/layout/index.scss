@@ -154,13 +154,43 @@ main{
      }
  }
  .footer{
-    background-color: variables.$footer-color;
-    height: 60px;
+    background-color: variables.$footer-bg;
+    height: 360px;
     max-width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     font-family: variables.$main;
     font-size: 1em;
-    color: variables.$bg-color;
+    color: variables.$footer-color;
+    >.footer-logo{
+        
+        width:150px;
+        >img{
+            width:100%;
+            height:auto;
+            text-align: center;
+    }
+ }
+ >.container-span{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin-top:20px;
+    >span{
+        
+        >a{
+            text-decoration: none;
+            color: variables.$footer-color;
+        }
+        &:hover{
+            color: variables.$nd-color;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+ }
  }

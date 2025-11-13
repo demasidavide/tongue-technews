@@ -138,13 +138,39 @@ main > .container-load > .load-more:hover {
 }
 
 .footer {
-  background-color: #d2d9d9;
-  height: 60px;
+  background-color: #111921;
+  height: 360px;
   max-width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   font-family: "Inter", sans-serif;
   font-size: 1em;
-  color: #14252F;
+  color: #d2d9d9;
+}
+.footer > .footer-logo {
+  width: 150px;
+}
+.footer > .footer-logo > img {
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+.footer > .container-span {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.footer > .container-span > span > a {
+  text-decoration: none;
+  color: #d2d9d9;
+}
+.footer > .container-span > span:hover {
+  color: #106996;
+  cursor: pointer;
+  text-decoration: underline;
 }/*# sourceMappingURL=index.css.map */
