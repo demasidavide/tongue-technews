@@ -88,13 +88,21 @@ function createCardSearch(id,by,title,url,score,comm){
                         console.log('Array iniziale:', favoritesArray);
                         
                         if(svgHeart.classList.contains('active')){
-                            if(!favoritesArray.includes(id)){
+                            if(!favoritesArray.includes(id) && !id === undefined){
                                 favoritesArray.push(id);
                                 //localStorage.setItem('favorites',JSON.stringify(favoritesArray));
                                 saveFavoritesInStorage(favoritesArray);
                                 console.log('preferito salvato')
                                 //loadFavorites();
                             }
+                            if(!id){
+                                const alert = document.querySelector('.alert-search')
+                                alert.classList.remove('hide');
+                                setTimeout(()=>{
+                                    alert.classList.add('hide')
+                                },2000);
+                                favoritesArray = removeFavorites(id);
+
                         }else{
                              //favoritesArray = favoritesArray.filter(favId => favId !== id); 
                              //localStorage.setItem('favorites',JSON.stringify(favoritesArray));  
@@ -103,9 +111,9 @@ function createCardSearch(id,by,title,url,score,comm){
                             //loadFavorites();
                             }
                     }
-                    })
+                    }
+})
 }
-
 
  //funzione per creare bottone per caricare altre notizie
 function createButtonMore(){

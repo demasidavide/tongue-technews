@@ -75,7 +75,6 @@ function createCardFavorites(id,by,title,url,score,comm){
                                               }else{
                                                 console.log('errore nella condivisione')
                                               }
-                                              //fino a qui parte ok condivisione
                       
                                           }else if(e.target.closest('#heartIcon')){
                                               removeFavorites(id);

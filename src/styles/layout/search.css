@@ -57,6 +57,22 @@ main > .search-news > .btn-group > .btn-outline:hover {
   background-color: #6cf9f4;
   color: #14252F;
 }
+main > .search-news > .alert-search {
+  position: fixed;
+  top: 10%;
+  font-family: "Inter", sans-serif;
+  background-color: rgb(231, 141, 141);
+  border: solid 2px rgba(255, 0, 0, 0.986);
+  border-radius: 5px;
+  padding: 10px 20px 10px 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgb(37, 18, 18);
+  box-shadow: 1px 1px 8px red;
+}
+main > .search-news > .alert-search.hide {
+  display: none;
+}
 main > .search-news > .container-card-search {
   display: flex;
   flex-direction: column;
