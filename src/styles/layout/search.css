@@ -81,6 +81,13 @@ main > .search-news > .container-card-search {
   align-items: center;
   width: 100%;
 }
+@media screen and (min-width: 1024px) {
+  main > .search-news > .container-card-search {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+  }
+}
 main > .search-news > .container-card-search > .card-search {
   height: -moz-fit-content;
   height: fit-content;

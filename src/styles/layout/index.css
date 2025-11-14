@@ -44,6 +44,13 @@ main > .news {
   max-width: 100%;
   margin-bottom: 20px;
 }
+@media screen and (min-width: 1024px) {
+  main > .news {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+  }
+}
 main > .news > .card {
   box-sizing: border-box;
   background-color: #d2d9d9;

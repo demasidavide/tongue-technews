@@ -37,6 +37,21 @@ main > .top-news > .carousel-container > .card-top {
   box-shadow: 1px 1px 18px 5px #6cf9f4;
   padding: 3%;
 }
+@media screen and (max-width: 574px) {
+  main > .top-news > .carousel-container > .card-top {
+    min-width: 320px;
+  }
+}
+@media screen and (max-width: 768px) {
+  main > .top-news > .carousel-container > .card-top {
+    min-width: 320px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  main > .top-news > .carousel-container > .card-top {
+    min-width: 350px;
+  }
+}
 main > .top-news > .carousel-container > .card-top > .card-header {
   color: #d2d9d9;
   display: flex;

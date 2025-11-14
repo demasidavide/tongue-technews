@@ -32,6 +32,23 @@ main{
         >.card-top{
             height: fit-content;
             min-width: 300px;
+            // inizio media query per card
+            @media screen and (max-width: 574px){
+    
+                    min-width: 320px;
+                
+            }
+            @media screen and (max-width: 768px){
+    
+                    min-width: 320px;
+                
+            }
+            @media screen and (max-width: 1024px){
+    
+                    min-width: 350px;
+                
+            }
+            // fine media query per card
             box-sizing: border-box;           
             background-color: variables.$bg-color;
             width: 85%;
@@ -118,3 +135,4 @@ main{
         }
     }
 }
+
