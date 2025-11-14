@@ -108,7 +108,7 @@ function createCard(id,by,title,url,score,comm){
 //chiamata news e creazione card con chiamata singola per ogni id-notizia
 let numCard=10;
 const apiBase= 'https://hacker-news.firebaseio.com/v0/'
-function loadnews(clearContent = true){
+export function loadnews(clearContent = true){
 //aggiunto per svuotare parent e non duplicare le news allo scadere del timer set interval in riga 71
 const scrollPosition = window.scrollY;
 if (clearContent) {

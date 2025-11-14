@@ -4,7 +4,23 @@ main{
     >.favorites{
         background-color: variables.$bg-color;
         height:auto;
-        
+        //inizio media query per le card
+        @media screen and (max-width: 768px){
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        @media screen and (max-width: 1024px){
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        @media screen and (min-width: 1025px){
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        //fine media query per le card
 
         >.card-favorites{
             height: fit-content;

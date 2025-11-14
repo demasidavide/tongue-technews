@@ -16,9 +16,9 @@
     <img src="./assets/img/logo-p.webp" class="logo" alt="Logo Tongue-Tech" title="Logo Tongue-Tech">
     
     <nav class="navbar" id="nav">
-        <a href="" data-page='new' class="selected">New</a>
+        <a href="" data-page='new' class="selected">📰New</a>
         <a href="#search" class="">🔍Search</a>
-        <a href="" id="favorites" class="">Preferiti</a>
+        <a href="" id="favorites" class="">❤Preferiti</a>
     </nav>
     <main>
         <h1 class="title">Le Top News</h1>
@@ -39,14 +39,16 @@
            <!-- qui verrano generate le card -->
         </section>
     <!-- fine NEWS -->
-        <div class="alert alert-danger visually-hidden" id="alert-new" role="alert">
+            <!-- errore per card non caricate -->
+                <div class="alert alert-danger visually-hidden" id="alert-new" role="alert">
                     Errore-Aggiorna la pagina e riprova
                 </div>
         <!-- container per tasto per caricare altre card -->
         <div class="container-load">
             <button class="load-more">Mostra altro</button>
         </div>
-        <!-- inizio sezione di ricerca news -->
+
+    <!-- inizio sezione RICERCA NEWS -->
         <section class="search-news" id="search">
             <!-- parte per effetturae ricerca -->
             <div class="container-search">
@@ -62,7 +64,7 @@
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" autohide: true></button>
                 </div>
             </div>
-<!-- fine div nascosto -->
+            <!-- fine div nascosto -->
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                 <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
                 <label class="btn btn-outline" for="btnradio1">Titolo</label>
@@ -83,6 +85,8 @@
             </div>
             <!-- qui verra generato il pulsanto load more two -->
         </section>
+    <!-- fine sezione RICERCA NEWS -->
+
         <section class="favorites">
 
 

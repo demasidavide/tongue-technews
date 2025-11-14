@@ -2,6 +2,27 @@ main > .favorites {
   background-color: #14252F;
   height: auto;
 }
+@media screen and (max-width: 768px) {
+  main > .favorites {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  main > .favorites {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+  }
+}
+@media screen and (min-width: 1025px) {
+  main > .favorites {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+  }
+}
 main > .favorites > .card-favorites {
   height: -moz-fit-content;
   height: fit-content;

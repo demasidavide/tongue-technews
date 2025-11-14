@@ -48,6 +48,11 @@ main{
                     min-width: 350px;
                 
             }
+            @media screen and (min-width: 1025px){
+    
+                    min-width: 400px;
+                
+            }
             // fine media query per card
             box-sizing: border-box;           
             background-color: variables.$bg-color;
@@ -93,6 +98,11 @@ main{
                     font-family: variables.$title;
                     color:variables.$footer-color;
                     font-size: 1.3em;
+                    @media screen and (min-width: 1025px){
+    
+                        font-size: 1.1rem;
+                
+                    }
                     font-weight: bold;
                     padding: 0px 5px 5px 5px;
                     border-bottom: solid 2px variables.$bg-color;

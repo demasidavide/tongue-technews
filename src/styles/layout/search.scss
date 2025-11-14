@@ -86,13 +86,13 @@ main{
             justify-content: center;
             align-items: center;
             width: 100%;
-            //inizio media query per le card
-        @media screen and (min-width: 1024px){
+            // inizio media query per container card
+            @media screen and (min-width: 1024px){
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 20px;
         }
-        //fine media query per le card
+            
         >.card-search{
             height: fit-content;
             min-width: 300px;
@@ -100,7 +100,7 @@ main{
             background-color: variables.$bg-color;
             width: 85%;
             border-radius: 5px;
-            margin:30px 0px 30px 0px;
+            margin:30px auto 30px auto;
             border:solid 1px variables.$footer-color;
             box-shadow: 1px 2px 4px 3px variables.$bg-color;
             padding: 3%;

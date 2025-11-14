@@ -1,5 +1,5 @@
 import { loadFavorites } from "./favorites.js";
-
+import { loadnews } from "./index.js";
 const title = document.querySelector('.title')
   const sectionTop = document.querySelector('.top-news')
   const sectionNews = document.querySelector('.news')
@@ -47,6 +47,7 @@ nav.addEventListener('click', (e) => {
   }
   if (e.target.dataset.page === 'new'){
       newClick();
+      window.location.reload();
       
   }
   if(e.target.id === 'favorites'){
