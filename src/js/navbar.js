@@ -23,6 +23,7 @@ const title = document.querySelector('.title')
     sectionNews.style.display ='block';
     containerLoad.style.display ='block';
     sectionSearch.style.display ='block';
+    
   }
 
   function newClick(){
