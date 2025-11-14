@@ -44,6 +44,7 @@ main{
                     stroke: variables.$footer-color;
                     stroke-width: 1.5px;
                     transition: all 0.5s ease;
+                    margin-left: auto; 
                     cursor: pointer;
                     
                     >.heart{
