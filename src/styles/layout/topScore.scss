@@ -25,16 +25,12 @@ main{
         >.carousel-container{
             scrollbar-width: thin;
             scrollbar-color: variables.$btn-color variables.$bg-color;
-            
-
             // inizio set per carosello
             overflow-x: auto;
             overflow-y: hidden;
             display: flex;
             gap: 20px;
             align-items: center;
-            
-            
 
         >.card-top{
             height: fit-content;
