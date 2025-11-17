@@ -18,7 +18,7 @@ html,body{
     height: auto;
     display: block;
     margin: 0 auto;
-    border-radius:  20px 20px 0px 0px;
+    border-radius:  10px 10px 0px 0px;
      @media screen and (max-width: 1440px){
            width: 40%;
         }
@@ -34,7 +34,8 @@ html,body{
     
 }
 .navbar{
-    background-color: variables.$bg-color; 
+   // background-color: variables.$bg-color; 
+    background:radial-gradient(circle at center,variables.$nd-color 0%, variables.$bg-color 75%);
     height: 60px;
     max-width: 100%;
     display: flex;
