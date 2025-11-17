@@ -117,7 +117,6 @@ function createCardSearch(id,by,title,url,score,comm){
 
  //funzione per creare bottone per caricare altre notizie
 function createButtonMore(){
-
     if(document.querySelector('.container-load-two')){
         return;
     }
