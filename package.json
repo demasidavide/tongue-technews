@@ -1,0 +1,27 @@
+{
+  "name": "tongue-technews",
+  "version": "1.0.0",
+  "description": "Featured on Hacker News, one of the most influential tech communities worldwide",
+  "homepage": "https://github.com/demasidavide/tongue-technews#readme",
+  "bugs": {
+    "url": "https://github.com/demasidavide/tongue-technews/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/demasidavide/tongue-technews.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "webpack-dev-server": "^5.2.2"
+  }
+}
