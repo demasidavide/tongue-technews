@@ -45,7 +45,7 @@ voted news on hacker news, scrollable horizontally</p>
 ###
 
 <h2>THANK YOU!</h2>
-<p>Try it: <a href="https://demasidavide.github.io/progetti/tongue/src">HERE</a></p>
+<h1>Try it: <a href="https://demasidavide.github.io/progetti/tongue/src">HERE</a></h1>
 
 ## Future Improvements
 - [ ] Login
