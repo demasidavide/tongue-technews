@@ -43,6 +43,9 @@ nav.addEventListener('click', (e) => {
     if(!e.target.getAttribute('href').startsWith('#')){
       e.preventDefault();
     }
+    if(e.target.getAttribute('href').startsWith('#')){
+      newClick();
+    }
     nav.querySelectorAll('a').forEach(element => element.classList.remove('selected'));
     e.target.classList.add('selected');
   }
