@@ -1,5 +1,7 @@
 @use '../abstract/variables';
-
+html{
+    scroll-behavior: smooth;
+}
 main{
     >.title{
         text-align: center;
@@ -18,15 +20,20 @@ main{
         padding-bottom: 50px;
         padding-top: 50px;
         scroll-behavior: smooth;
-        
-        
+
+        //scrollbar orizzontale piu piccola
         >.carousel-container{
+            scrollbar-width: thin;
+            scrollbar-color: variables.$btn-color variables.$bg-color;
+            
+
             // inizio set per carosello
             overflow-x: auto;
             overflow-y: hidden;
             display: flex;
             gap: 20px;
             align-items: center;
+            
             
 
         >.card-top{

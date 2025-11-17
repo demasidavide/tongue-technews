@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 main > .title {
   text-align: center;
   font-family: "Montserrat", sans-serif;
@@ -18,6 +22,8 @@ main > .top-news {
   scroll-behavior: smooth;
 }
 main > .top-news > .carousel-container {
+  scrollbar-width: thin;
+  scrollbar-color: #6cf9f4 #14252F;
   overflow-x: auto;
   overflow-y: hidden;
   display: flex;
