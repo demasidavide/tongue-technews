@@ -1,3 +1,15 @@
+//importo tutti i javascript
+import './favorites.js';
+import './navbar.js';
+import './searchNews.js';
+import './topScore.js';
+import './saveLoadfavorites.js';
+
+//importo fogli di stile
+import '../styles/layout/index.css';
+import './styles/layout/favorites.css';
+import './styles/layout/search.css';
+import './styles/layout/topScore.css';
 //importo funzioni per salvare preferiti
 import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
 import { loadFavorites } from './favorites.js';
