@@ -146,7 +146,7 @@ eval("{\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleEle
   \****************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("{module.exports = __webpack_require__.p + \"333bb83964920cb52d1d.webp\";\n\n//# sourceURL=webpack://tongue-technews/./src/assets/img/sfondotopc.webp?\n}");
+eval("{module.exports = __webpack_require__.p + \"assets/img/sfondotopc.webp\";\n\n//# sourceURL=webpack://tongue-technews/./src/assets/img/sfondotopc.webp?\n}");
 
 /***/ }),
 

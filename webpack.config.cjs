@@ -28,6 +28,13 @@ module.exports = {
                      
                 }
             }
+        },
+        {
+            test: /\.(png|PNG|jpe?g|svg|webp)$/i,
+            type: 'asset/resource',
+            generator: {
+            filename: 'assets/img/[name][ext]'
+        }  
         }
     ]},
     plugins:[
