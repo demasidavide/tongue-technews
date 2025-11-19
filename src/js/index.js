@@ -7,9 +7,9 @@ import './saveLoadfavorites.js';
 
 //importo fogli di stile
 import '../styles/layout/index.css';
-import './styles/layout/favorites.css';
-import './styles/layout/search.css';
-import './styles/layout/topScore.css';
+import '../styles/layout/favorites.css';
+import '../styles/layout/search.css';
+import '../styles/layout/topScore.css';
 //importo funzioni per salvare preferiti
 import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
 import { loadFavorites } from './favorites.js';

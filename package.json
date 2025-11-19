@@ -2,7 +2,7 @@
   "name": "tongue-technews",
   "version": "1.0.0",
   "description": "Featured on Hacker News, one of the most influential tech communities worldwide",
-  "main": "index.js",
+  "main": "./src/js/index.js",
   "scripts": {
     "dev": "webpack server",
     "build": "webpack",
