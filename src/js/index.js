@@ -1,4 +1,3 @@
-//importo tutti i javascript
 import './favorites.js';
 import './navbar.js';
 import './searchNews.js';
@@ -10,6 +9,7 @@ import '../styles/layout/index.css';
 import '../styles/layout/favorites.css';
 import '../styles/layout/search.css';
 import '../styles/layout/topScore.css';
+
 //importo funzioni per salvare preferiti
 import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
 import { loadFavorites } from './favorites.js';
@@ -54,7 +54,6 @@ function createCard(id,by,title,url,score,comm){
                 //const per scope globale
                 const translate = () => {
                       const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(title)}&langpair=en|it`;
-  
                       fetch(url)
                       .then(response => response.json())
                       .then(data => {
@@ -115,7 +114,6 @@ function createCard(id,by,title,url,score,comm){
                     }
                     })
 }
-
 
 //chiamata news e creazione card con chiamata singola per ogni id-notizia
 let numCard=10;

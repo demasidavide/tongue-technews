@@ -33,7 +33,7 @@ module.exports = {
             test: /\.(png|PNG|jpe?g|svg|webp)$/i,
             type: 'asset/resource',
             generator: {
-            filename: 'assets/img/[name][ext]'
+                filename: 'assets/img/[name][ext]'
         }  
         }
     ]},
@@ -46,6 +46,7 @@ module.exports = {
     devServer:{
         port:5000,
         open:true,
+        hot: true,
         static:path.resolve(__dirname,'dist')
     },
     mode:'development'

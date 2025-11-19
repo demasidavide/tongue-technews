@@ -105,21 +105,21 @@ function createCardTop(id,by,title,url,score,comm){
                     })
 }
 
-//chiamata per top news( della giornata?ultime 24 ore?)
-//prova con async
+//chiamata per top news
+
 const apiBaseTop='https://hacker-news.firebaseio.com/v0/';
 async function topNews(){
     try{
     const response = await fetch(apiBaseTop + 'topstories.json')
     const data = await response.json();
     const ten = data.slice(0, 10);
+    console.log(ten)
     for(const element of ten){
             try{
                 const responseItem = await fetch(apiBaseTop + `/item/${element}.json`)
                 const dataItem = await responseItem.json();
                 createCardTop(dataItem.id,dataItem.by,dataItem.title,dataItem.url,dataItem.score,dataItem.descendants)
             }catch{
-                 
                 console.log('errore nel caricamento delle card')
             }
     }
@@ -127,10 +127,10 @@ async function topNews(){
         console.log('card non create')
         const alertTop = document.getElementById('alert-top')
         alertTop.classList.remove('visually-hidden')
-
     }
 }
-topNews()
+topNews();
+
 //scroll orizzontale con hover del mouse
 const carouselTopNews = document.querySelector('.carousel-container');
 if(carouselTopNews){

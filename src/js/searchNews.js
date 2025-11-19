@@ -1,6 +1,7 @@
 //importo funzioni per salvare preferiti
 import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
 import { loadFavorites } from './favorites.js';
+//import metodi lodash
 
 //creazione card per news ricercate
 
@@ -41,10 +42,10 @@ function createCardSearch(id,by,title,url,score,comm){
     //funzione per tradurre titolo
                 const btnTranslate = cardSearch.querySelector('.translate');
                 const titleElement = cardSearch.querySelector('.card-title a');
-                //const per scope globale
+                //fetch a transalte.com per la traduzione del titolo
+                //uso const per scope globale
                 const translate = () => {
                       const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(title)}&langpair=en|it`;
-  
                       fetch(url)
                       .then(response => response.json())
                       .then(data => {
@@ -53,17 +54,19 @@ function createCardSearch(id,by,title,url,score,comm){
                       .catch(error => console.error("Errore:", error));
                       };
 
-                      // Desktop
+                      //listener Desktop, per tradurre titolo all'hover del mouse
                       btnTranslate.addEventListener('mouseenter', translate);
                       btnTranslate.addEventListener('mouseleave', () => {
                       titleElement.textContent = title;
                       });
 
-                      // Mobile
+                      // listener Mobile, per tradurre titolo premendo sull'icona
                       btnTranslate.addEventListener('touchstart', translate);
                       btnTranslate.addEventListener('touchend', () => {
                       titleElement.textContent = title;
                       })
+    //fine parte di traduzione titolo
+    //inizio parte per la condivisione delle notizie con web share
                       //aggiunta LISTENER per condividere la notizia
                       const headerTop = cardSearch.querySelector('.card-header')
                       headerTop.addEventListener('click',(e)=>{
@@ -77,23 +80,20 @@ function createCardSearch(id,by,title,url,score,comm){
                         }else{
                           console.log('errore nella condivisione')
                         }
-                        //fino a qui parte ok condivisione
-
+    //fine parte per la condivisione delle notizie
+    //inizio parte per salvare la notizia nei preferiti con localstorage(lascio i console.log per eventuali debug)
                     }else if(e.target.closest('#heartIcon')){
                         const svgHeart = headerTop.querySelector('.heart')
                         svgHeart.classList.toggle('active');
-                        //ok
-                        console.log('ID corrente:', id);
+                        //console.log('ID corrente:', id);
                         let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || []; // Recupera preferiti o array vuoto
-                        console.log('Array iniziale:', favoritesArray);
-                        
+                        //console.log('Array iniziale:', favoritesArray);
+                    //recupero array favoritesArray e salvo i nuovi id selezionati    
                         if(svgHeart.classList.contains('active')){
                             if(!favoritesArray.includes(id) && !id === undefined){
                                 favoritesArray.push(id);
-                                //localStorage.setItem('favorites',JSON.stringify(favoritesArray));
                                 saveFavoritesInStorage(favoritesArray);
                                 console.log('preferito salvato')
-                                //loadFavorites();
                             }
                             if(!id){
                                 const alert = document.querySelector('.alert-search')
@@ -138,10 +138,10 @@ function createButtonMore(){
 
 //funzione per spinner
 function spinner(){
-const spinner = document.querySelector('.spinner-border')
-    spinner.style.display = 'block'
+const spinnerElement = document.querySelector('.spinner-border')
+    spinnerElement.style.display = 'block'
     setTimeout(()=>{
-        spinner.style.display = 'none';
+        spinnerElement.style.display = 'none';
     },3000)
 }
 
@@ -178,6 +178,7 @@ async function loadMoreSearchNews(){
         try{
     const responseSearch = await fetch(apiB + searchValue);
     const data = await responseSearch.json();
+    
     const ten = data.hits.slice(numCardGenerated - 10, numCardGenerated);
 
     console.log(ten);
@@ -189,7 +190,6 @@ async function loadMoreSearchNews(){
         console.log("errore nella ricerca card")
     }
 }
-
 
 //prova fetch con algolia
 const apiBaseA = 'https://hn.algolia.com/api/v1/search?tags=story,author_'
@@ -215,7 +215,7 @@ async function searchNews() {
     const ten = data.hits.slice(numCardGenerated - 10, numCardGenerated);
     parentSearch.innerHTML="";
     console.log(ten);
-    if(ten.length === 0){
+    if(ten.length===0){
         toastError.classList.add('show');
         setTimeout(()=>{
         toastError.classList.remove('show');},4000);
@@ -228,6 +228,6 @@ async function searchNews() {
     }catch{
         console.log("errore nella ricerca card")
     }finally{
-        spinner.style.display = 'none';
+        //spinnerElement.style.display = 'none';
     }
 }

@@ -1,3 +1,7 @@
+
+
+
+
 import { loadFavorites } from "./favorites.js";
 
 const title = document.querySelector('.title')
