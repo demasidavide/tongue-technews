@@ -6,6 +6,8 @@ import { loadFavorites } from './favorites.js';
 import { isEmpty } from 'lodash';//controllo dati e gestione errore
 import { get } from 'lodash';//recupero dati e gestione errore
 import { uniq } from 'lodash';//per controllo valori doppi in array
+import { slice } from 'lodash';//slice di 10 id da array
+import { compact } from 'lodash';//esclusione valore false,null,0,undefined da array id
 
 
 //funzione per creare card-top
@@ -117,19 +119,26 @@ function createCardTop(id,by,title,url,score,comm){
                     })
 }
 //-----------------fine parte salvataggio preferiti------------------------
-//chiamata per top news
 
+//-----------------chiamata per top news-----------------------------------
 const apiBaseTop='https://hacker-news.firebaseio.com/v0/';
 async function topNews(){
     try{
     const response = await fetch(apiBaseTop + 'topstories.json')
     const data = await response.json();
-    const ten = data.slice(0, 10);
-    console.log(ten)
-    for(const element of ten){
+    //--lodash-- slice per 10 notizie
+    const ten = slice(data,0, 10);
+    //--lodash--per controllo id falsy
+      const validNews = compact(ten);
+    for(const element of validNews){
             try{
                 const responseItem = await fetch(apiBaseTop + `/item/${element}.json`)
                 const dataItem = await responseItem.json();
+                //--lodash--controllo se titolo e url non presenti scarta notizia
+                if(isEmpty(dataItem.title) && isEmpty(dataItem.url)){
+                console.warn('Notizia scartata')
+                return;
+                }
                 createCardTop(dataItem.id,dataItem.by,dataItem.title,dataItem.url,dataItem.score,dataItem.descendants)
             }catch{
                 console.log('errore nel caricamento delle card')
@@ -142,8 +151,9 @@ async function topNews(){
     }
 }
 topNews();
+//------------------fine creazione card top news--------------------------
 
-//scroll orizzontale con hover del mouse
+//----------------funzione per scroll orizzontale con hover del mouse-----
 const carouselTopNews = document.querySelector('.carousel-container');
 if(carouselTopNews){
     carouselTopNews.addEventListener('wheel', (e)=>{
