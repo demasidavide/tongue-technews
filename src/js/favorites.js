@@ -100,9 +100,7 @@ function createCardFavorites(id,by,title,url,score,comm){
 //------------------fine parte rimozione--------------------------------------
 
 //-------------creazione card con dati salvati in local storage---------------
-//selezione dei nuovi id salvati
 const apiFavorites = 'https://hacker-news.firebaseio.com/v0/item/';
-//funzione chiamata
 export async function loadFavorites(){
     parentFav.innerHTML="";
     const favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
