@@ -104,6 +104,7 @@ function createCard(id,by,title,url,score,comm){
                           console.log('errore nella condivisione')
                         }
 //-----------------fine parte per condivisione--------------------------------
+
 //-----------------funzione per salvataggio in preferiti----------------------
                     }else if(e.target.closest('#heartIcon')){
                         const svgHeart = headerTop.querySelector('.heart')

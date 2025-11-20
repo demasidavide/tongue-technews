@@ -5,6 +5,7 @@ import { loadFavorites } from './favorites.js';
 //imorto librerie lodash
 import { isEmpty } from 'lodash';//controllo dati e gestione errore
 import { get } from 'lodash';//recupero dati e gestione errore
+import { uniq } from 'lodash';//per controllo valori doppi in array
 
 
 //funzione per creare card-top
@@ -75,7 +76,8 @@ function createCardTop(id,by,title,url,score,comm){
                       })
 //----------------fine parte di traduzione titolo-----------------------------
 
-                      //aggiunta LISTENER su card header per condividere la notizia e per preferito
+//----------------funzione di condivisione------------------------------------
+                      //event delegation per condivisione e preferiti
                       const headerTop = cardTop.querySelector('.card-header')
                       headerTop.addEventListener('click',(e)=>{
                         if(e.target.classList.contains('share-top')){
@@ -88,35 +90,33 @@ function createCardTop(id,by,title,url,score,comm){
                         }else{
                           console.log('errore nella condivisione')
                         }
-                        //fino a qui parte ok condivisione
+//-----------------fine parte per condivisione--------------------------------
 
+//-----------------funzione per salvataggio in preferiti----------------------                        
                     }else if(e.target.closest('#heartIcon')){
                         const svgHeart = headerTop.querySelector('.heart')
                         svgHeart.classList.toggle('active');
-                        //ok
-                        console.log('ID corrente:', id);
+                        //console.log('ID corrente:', id);
                         let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || []; // Recupera preferiti o array vuoto
-                        console.log('Array iniziale:', favoritesArray);
-                        
+                        //console.log('Array iniziale:', favoritesArray);
                         if(svgHeart.classList.contains('active')){
-                            if(!favoritesArray.includes(id)){
                                 favoritesArray.push(id);
-                                //localStorage.setItem('favorites',JSON.stringify(favoritesArray));
+                                //--lodash--controllo id doppi
+                                favoritesArray=uniq(favoritesArray);
                                 saveFavoritesInStorage(favoritesArray);
-                                console.log('preferito salvato')
-                                loadFavorites();
+                                //console.log('preferito salvato')
+                                //???loadFavorites(); da vedere!!!!!!!!!!!!!!!!!!!!!!!!!
                             }
                         }else{
                              //favoritesArray = favoritesArray.filter(favId => favId !== id); 
                              //localStorage.setItem('favorites',JSON.stringify(favoritesArray));  
                             favoritesArray = removeFavorites(id); 
-                            console.log('Rimosso:', favoritesArray);
+                            //console.log('Rimosso:', favoritesArray);
                             loadFavorites();
                             }
-                    }
                     })
 }
-
+//-----------------fine parte salvataggio preferiti------------------------
 //chiamata per top news
 
 const apiBaseTop='https://hacker-news.firebaseio.com/v0/';
