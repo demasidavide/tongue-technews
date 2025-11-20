@@ -1,9 +1,15 @@
 //importo funzioni di rimozione favorito
 import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
 
+//importo librerie lodash
+import { uniq } from 'lodash';//per controllo valori doppi in array
+import { slice } from 'lodash';//'taglia' array a 10
+import { get } from 'lodash';//recupero dati e gestione errore
+import { isEmpty } from 'lodash';//controllo dati e gestione errore
+import { compact } from 'lodash';//esclusione valore false,null,0,undefined da array id
+
 //crea card per preferiti
 const parentFav = document.querySelector('.favorites')
-
 function createCardFavorites(id,by,title,url,score,comm){
     const cardFavorites = document.createElement('div')
     cardFavorites.className='card-favorites';
@@ -36,54 +42,66 @@ function createCardFavorites(id,by,title,url,score,comm){
                 </div>`
                 parentFav.appendChild(cardFavorites);
 
-                //funzione per tradurre titolo
+//---------------------funzione per tradurre titolo-------------------
                 const btnTranslate = cardFavorites.querySelector('.translate');
                 const titleElement = cardFavorites.querySelector('.card-title a');
-                //const per scope globale
+                //uso const per scope globale
                 const translate = () => {
                       const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(title)}&langpair=en|it`;
-  
                       fetch(url)
                       .then(response => response.json())
                       .then(data => {
-                      titleElement.textContent = data.responseData.translatedText;
+                      //--lodash--controllo array vuoto
+                        if(isEmpty(data)){
+                          console.error('Impossibile tradurre')
+                          return;
+                        }
+                        //--lodash--controllo di avere i dati, else gestione errore
+                        const txt = get(data, 'responseData.translatedText', 'Impossibile tradurre')
+                        titleElement.textContent = txt;
                       })
                       .catch(error => console.error("Errore:", error));
                       };
 
-                      // Desktop
+                      // Desktop, per tradurre all'hover del mouse
                       btnTranslate.addEventListener('mouseenter', translate);
                       btnTranslate.addEventListener('mouseleave', () => {
                       titleElement.textContent = title;
                       });
 
-                      // Mobile
+                      // Mobile, per tradurre alla pressione del pulsante
                       btnTranslate.addEventListener('touchstart', translate);
                       btnTranslate.addEventListener('touchend', () => {
                       titleElement.textContent = title;
                       })
-                      //aggiunta LISTENER su card header per condividere la notizia e per preferito
-                                            const headerTop = cardFavorites.querySelector('.card-header')
-                                            headerTop.addEventListener('click',(e)=>{
-                                              if(e.target.classList.contains('share-top')){
-                                              if(navigator.share){
-                                                navigator.share({
-                                                  title: title,
-                                                  text: "Guarda questa News Tecnologica!",
-                                                  url: url
-                                                })
-                                              }else{
-                                                console.log('errore nella condivisione')
-                                              }
-                      
-                                          }else if(e.target.closest('#heartIcon')){
-                                              removeFavorites(id);
-                                              cardFavorites.remove();
-                                              //saveFavoritesInStorage(favoritesArray);
-                                          }
-                                          })
+//----------------fine parte di traduzione titolo-----------------------------
+
+//----------------funzione di condivisione------------------------------------
+                    //event delegation per condivisione e preferiti
+                    const headerTop = cardFavorites.querySelector('.card-header')
+                    headerTop.addEventListener('click',(e)=>{
+                        if(e.target.classList.contains('share-top')){
+                            if(navigator.share){
+                                navigator.share({
+                                    title: title,
+                                    text: "Guarda questa News Tecnologica!",
+                                    url: url
+                                })
+                            }else{
+                                console.log('errore nella condivisione')
+                            }
+//-----------------fine parte per condivisione--------------------------------
+
+//-----------------parte per rimuovere card salvate---------------------------
+                            }else if(e.target.closest('#heartIcon')){
+                                removeFavorites(id);
+                                cardFavorites.remove();
+                            }
+                    })
 }
-//prova fetch con id salvati
+//------------------fine parte rimozione--------------------------------------
+
+//-------------creazione card con dati salvati in local storage---------------
 const apiFavorites = 'https://hacker-news.firebaseio.com/v0/item/';
 const favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
 console.log('id recuperati:',favoritesArray)
@@ -91,7 +109,7 @@ console.log('id recuperati:',favoritesArray)
 export async function loadFavorites(){
     const favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
     const uniqueArray = [...new Set(favoritesArray)];
-    console.log( 'array unico:',uniqueArray)
+    console.log( 'array senza doppi id:',uniqueArray)
 
     if(uniqueArray.length === 0){
         console.log('array vuoto')

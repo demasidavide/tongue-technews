@@ -55,7 +55,6 @@ function createCard(id,by,title,url,score,comm){
                 parent.appendChild(card);
                 
 //---------------------funzione per tradurre titolo-------------------
-                //recupero elementi
                 const btnTranslate = card.querySelector('.translate');
                 const titleElement = card.querySelector('.card-title a');
                 //uso const per scope globale
