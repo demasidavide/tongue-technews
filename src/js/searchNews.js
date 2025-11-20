@@ -1,12 +1,16 @@
 //importo funzioni per salvare preferiti
 import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
 import { loadFavorites } from './favorites.js';
-//import metodi lodash
+
+//importo librerie lodash
+import { uniq } from 'lodash';//per controllo valori doppi in array
+import { slice } from 'lodash';//'taglia' array a 10
+import { get } from 'lodash';//recupero dati e gestione errore
+import { isEmpty } from 'lodash';//controllo dati e gestione errore
+import { compact } from 'lodash';//esclusione valore false,null,0,undefined da array id
 
 //creazione card per news ricercate
-
 const parentSearch = document.querySelector('.container-card-search')
-
 function createCardSearch(id,by,title,url,score,comm){
     const cardSearch = document.createElement('div')
     cardSearch.className='card-search';
@@ -39,34 +43,41 @@ function createCardSearch(id,by,title,url,score,comm){
                 </div>`
     parentSearch.appendChild(cardSearch);
 
-    //funzione per tradurre titolo
+//---------------------funzione per tradurre titolo-------------------
                 const btnTranslate = cardSearch.querySelector('.translate');
                 const titleElement = cardSearch.querySelector('.card-title a');
-                //fetch a transalte.com per la traduzione del titolo
                 //uso const per scope globale
                 const translate = () => {
                       const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(title)}&langpair=en|it`;
                       fetch(url)
                       .then(response => response.json())
                       .then(data => {
-                      titleElement.textContent = data.responseData.translatedText;
+                        //--lodash--controllo array vuoto
+                        if(isEmpty(data)){
+                        console.error('Impossibile tradurre')
+                        return;
+                        }
+                      //--lodash--controllo di avere i dati, else gestione errore
+                        const txt = get(data, 'responseData.translatedText', 'Impossibile tradurre')
+                        titleElement.textContent = txt;
                       })
                       .catch(error => console.error("Errore:", error));
                       };
 
-                      //listener Desktop, per tradurre titolo all'hover del mouse
+                      //Desktop, per tradurre titolo all'hover del mouse
                       btnTranslate.addEventListener('mouseenter', translate);
                       btnTranslate.addEventListener('mouseleave', () => {
                       titleElement.textContent = title;
                       });
 
-                      // listener Mobile, per tradurre titolo premendo sull'icona
+                      //Mobile, per tradurre titolo premendo sull'icona
                       btnTranslate.addEventListener('touchstart', translate);
                       btnTranslate.addEventListener('touchend', () => {
                       titleElement.textContent = title;
                       })
-    //fine parte di traduzione titolo
-    //inizio parte per la condivisione delle notizie con web share
+//----------------fine parte di traduzione titolo-----------------------------
+
+//----------------funzione di condivisione------------------------------------
                       //aggiunta LISTENER per condividere la notizia
                       const headerTop = cardSearch.querySelector('.card-header')
                       headerTop.addEventListener('click',(e)=>{

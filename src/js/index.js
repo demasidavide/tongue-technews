@@ -11,9 +11,9 @@ import '../styles/layout/search.css';
 import '../styles/layout/topScore.css';
 
 //importo librerie lodash
-import uniq from 'lodash/uniq.js';//per controllo valori doppi in array
-import slice from 'lodash/slice.js';//'taglia' array a 10
-import get from 'lodash/get.js';//recupero dati e gestione errore
+import { uniq } from 'lodash';//per controllo valori doppi in array
+import { slice } from 'lodash';//'taglia' array a 10
+import { get } from 'lodash';//recupero dati e gestione errore
 import { isEmpty } from 'lodash';//controllo dati e gestione errore
 import { compact } from 'lodash';//esclusione valore false,null,0,undefined da array id
 
