@@ -11,11 +11,11 @@ import '../styles/layout/search.css';
 import '../styles/layout/topScore.css';
 
 //importo librerie lodash
-import uniq from 'lodash/uniq.js';
-import slice from 'lodash/slice.js';
-import get from 'lodash/get.js';
-import { isEmpty } from 'lodash';
-
+import uniq from 'lodash/uniq.js';//per controllo valori doppi in array
+import slice from 'lodash/slice.js';//'taglia' array a 10
+import get from 'lodash/get.js';//recupero dati e gestione errore
+import { isEmpty } from 'lodash';//controllo dati e gestione errore
+import { compact } from 'lodash';//esclusione valore false,null,0,undefined da array id
 
 //importo funzioni per salvare preferiti
 import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
@@ -52,7 +52,6 @@ function createCard(id,by,title,url,score,comm){
                     </button>
                     <button type="button" class="btn btn-primary position-relative translate"><img src="./assets/img/translate.png" alt="traduci"></button>
                 </div>`
-
                 parent.appendChild(card);
                 
 //---------------------funzione per tradurre titolo-------------------
@@ -77,19 +76,21 @@ function createCard(id,by,title,url,score,comm){
                       .catch(error => console.error("Errore:", error));
                       };
 
-                      // Desktop
+                      // Desktop, per tradurre all'hover del mouse
                       btnTranslate.addEventListener('mouseenter', translate);
                       btnTranslate.addEventListener('mouseleave', () => {
                       titleElement.textContent = title;
                       });
 
-                      // Mobile
+                      // Mobile, per tradurre alla pressione del pulsante
                       btnTranslate.addEventListener('touchstart', translate);
                       btnTranslate.addEventListener('touchend', () => {
                       titleElement.textContent = title;
                       })
+//----------------fine parte di traduzione titolo-----------------------------
 
-                      //aggiunta LISTENER per condividere la notizia
+//----------------funzione di condivisione------------------------------------
+                      //event delegation per condivisione e preferiti
                       const headerTop = card.querySelector('.card-header')
                       headerTop.addEventListener('click',(e)=>{
                         if(e.target.classList.contains('share')){
@@ -102,15 +103,14 @@ function createCard(id,by,title,url,score,comm){
                         }else{
                           console.log('errore nella condivisione')
                         }
-                        //fino a qui parte ok condivisione
-
+//-----------------fine parte per condivisione--------------------------------
+//-----------------funzione per salvataggio in preferiti----------------------
                     }else if(e.target.closest('#heartIcon')){
                         const svgHeart = headerTop.querySelector('.heart')
                         svgHeart.classList.toggle('active');
                         //console.log('ID corrente:', id);
                         let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || []; // Recupera preferiti o array vuoto
                         //console.log('Array iniziale:', favoritesArray);
-                        
                         if(svgHeart.classList.contains('active')){
                                 favoritesArray.push(id);
                                 //--lodash--controllo id doppi
@@ -124,12 +124,13 @@ function createCard(id,by,title,url,score,comm){
                     }
                     })
 }
+//-----------------fine parte salvataggio preferiti------------------------
 
-//chiamata news e creazione card con chiamata singola per ogni id-notizia
+//-----------------chiamata news e creazione card con chiamata singola per ogni id-notizia--------------
 let numCard=10;
 const apiBase= 'https://hacker-news.firebaseio.com/v0/'
 export function loadnews(clearContent = true){
-//aggiunto per svuotare parent e non duplicare le news allo scadere del timer set interval in riga 71
+//aggiunto per svuotare parent e non duplicare le news allo scadere del timer set interval
 const scrollPosition = window.scrollY;
 if (clearContent) {
     parent.innerHTML = ""; 
@@ -138,16 +139,22 @@ if (clearContent) {
 fetch(apiBase + 'newstories.json')
 .then(response=>response.json())
 .then(data=>{
-  //slice per prendere solo le prime 10
+  //--lodash-- per prendere solo le prime 10
   const topten= slice(data,numCard -10,numCard);
-  
-  topten.forEach( element=> {
+  //--lodash--per controllo id falsy
+  const validNews = compact(topten);
+  validNews.forEach( element=> {
     //chiamata e creazione per ogni id
     fetch(apiBase + `item/${element}.json`)
     .then(respitem=>respitem.json())
     .then(dataitem=>{
+      //--lodash--controllo se titolo e url non presenti scarta notizia
+      if(isEmpty(dataitem.title) && isEmpty(dataitem.url)){
+        console.warn('Notizia scartata')
+        return;
+      }
       createCard(dataitem.id,dataitem.by,dataitem.title,dataitem.url,dataitem.score,dataitem.descendants);
-      //riporta l utente alla stessa posizione dopo il reload automatico della pagina di riga 71
+      //riporta l utente alla stessa posizione dopo il reload automatico della pagina allo scadere del timer
       window.scrollTo(0,scrollPosition);
     })
     .catch(error=>console.error('Errore,impossibile creare la Card',error));
@@ -158,13 +165,15 @@ fetch(apiBase + 'newstories.json')
         alertNew.classList.remove('visually-hidden');
 });
 }
+//------------------fine creazione card news--------------------------
 
-//funzione per caricare piu notizie
+//-------------------funzione per caricare piu notizie----------------
 const loadMore = document.querySelector('.load-more')
 loadMore.addEventListener('click', ()=>{
   numCard+=10;
 loadnews(false);
 })
+//-------------------fine carica piu notizie--------------------------
 
 //carica notizie all avvio
 loadnews(true);
