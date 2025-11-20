@@ -1,8 +1,7 @@
 //importa funzione per salvare id in localStorage
 import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
-import { loadFavorites } from './favorites.js';
 
-//imorto librerie lodash
+//importo librerie lodash
 import { isEmpty } from 'lodash';//controllo dati e gestione errore
 import { get } from 'lodash';//recupero dati e gestione errore
 import { uniq } from 'lodash';//per controllo valori doppi in array
@@ -106,15 +105,11 @@ function createCardTop(id,by,title,url,score,comm){
                                 //--lodash--controllo id doppi
                                 favoritesArray=uniq(favoritesArray);
                                 saveFavoritesInStorage(favoritesArray);
-                                //console.log('preferito salvato')
-                                //???loadFavorites(); da vedere!!!!!!!!!!!!!!!!!!!!!!!!!
+                                console.log('preferito salvato da top')
                             }
                         }else{
-                             //favoritesArray = favoritesArray.filter(favId => favId !== id); 
-                             //localStorage.setItem('favorites',JSON.stringify(favoritesArray));  
                             favoritesArray = removeFavorites(id); 
-                            //console.log('Rimosso:', favoritesArray);
-                            loadFavorites();
+                            console.log('Rimosso da top:', favoritesArray);
                             }
                     })
 }
