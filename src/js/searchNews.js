@@ -7,7 +7,6 @@ import { uniq } from 'lodash';//per controllo valori doppi in array
 import { slice } from 'lodash';//'taglia' array a 10
 import { get } from 'lodash';//recupero dati e gestione errore
 import { isEmpty } from 'lodash';//controllo dati e gestione errore
-import { compact } from 'lodash';//esclusione valore false,null,0,undefined da array id
 
 //creazione card per news ricercate
 const parentSearch = document.querySelector('.container-card-search')
@@ -78,7 +77,7 @@ function createCardSearch(id,by,title,url,score,comm){
 //----------------fine parte di traduzione titolo-----------------------------
 
 //----------------funzione di condivisione------------------------------------
-                      //aggiunta LISTENER per condividere la notizia
+                      //event delegation per condivisione e preferiti
                       const headerTop = cardSearch.querySelector('.card-header')
                       headerTop.addEventListener('click',(e)=>{
                         if(e.target.classList.contains('share-search')){
@@ -91,42 +90,43 @@ function createCardSearch(id,by,title,url,score,comm){
                         }else{
                           console.log('errore nella condivisione')
                         }
-    //fine parte per la condivisione delle notizie
-    //inizio parte per salvare la notizia nei preferiti con localstorage(lascio i console.log per eventuali debug)
+//------------------fine parte per la condivisione delle notizie----------------
+
+//-----------------funzione per salvataggio in preferiti----------------------
                     }else if(e.target.closest('#heartIcon')){
                         const svgHeart = headerTop.querySelector('.heart')
                         svgHeart.classList.toggle('active');
                         //console.log('ID corrente:', id);
                         let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || []; // Recupera preferiti o array vuoto
                         //console.log('Array iniziale:', favoritesArray);
-                    //recupero array favoritesArray e salvo i nuovi id selezionati    
                         if(svgHeart.classList.contains('active')){
-                            if(!favoritesArray.includes(id) && !id === undefined){
                                 favoritesArray.push(id);
+                                //--lodash--controllo id doppi
+                                favoritesArray=uniq(favoritesArray);
                                 saveFavoritesInStorage(favoritesArray);
-                                console.log('preferito salvato')
-                            }
-                            if(!id){
-                                const alert = document.querySelector('.alert-search')
-                                alert.classList.remove('hide');
-                                setTimeout(()=>{
-                                    alert.classList.add('hide')
-                                },2000);
-                                favoritesArray = removeFavorites(id);
+                                console.log('preferito salvato1')
+                                
+                        //     if(!id){
+                        //         const alert = document.querySelector('.alert-search')
+                        //         alert.classList.remove('hide');
+                        //         setTimeout(()=>{
+                        //             alert.classList.add('hide')
+                        //         },2000);
+                        //         favoritesArray = removeFavorites(id);
 
-                        }else{
+                        // }
+                            }else{
                              //favoritesArray = favoritesArray.filter(favId => favId !== id); 
                              //localStorage.setItem('favorites',JSON.stringify(favoritesArray));  
                             favoritesArray = removeFavorites(id); 
                             console.log('Rimosso:', favoritesArray);
-                            //loadFavorites();
                             }
                     }
-                    }
-})
+                })
 }
+//-----------------fine parte salvataggio preferiti------------------------
 
- //funzione per creare bottone per caricare altre notizie
+//-----------------funzione per creare bottone per caricare altre notizie----
 function createButtonMore(){
     if(document.querySelector('.container-load-two')){
         return;
@@ -140,14 +140,14 @@ function createButtonMore(){
     buttonLoad.textContent = 'Mostra altro'
     containerButton.appendChild(buttonLoad)
 
-    //const moreSearch= document.querySelector('.load-more-two')
     buttonLoad.addEventListener('click', ()=>{
     numCardGenerated += 10;
     loadMoreSearchNews();   
     })
 }
+//--------------fine crea bottone per caricare altre notizie----
 
-//funzione per spinner
+//--------------funzione per spinner attesa caricamento---------
 function spinner(){
 const spinnerElement = document.querySelector('.spinner-border')
     spinnerElement.style.display = 'block'
@@ -155,16 +155,15 @@ const spinnerElement = document.querySelector('.spinner-border')
         spinnerElement.style.display = 'none';
     },3000)
 }
+//--------------fine spinner---------------------------------------
 
-//funzione per aggiornare la ricerca con campo input
+//---------funzione per aggiornare la ricerca alla digitazione------
 const textSearch = document.querySelector('.input-search')
 let searchValue="";
 let timeoutId;
 function updateSearchValue(newValue){
     searchValue = newValue;
-
     clearTimeout(timeoutId);
-
     if (searchValue.trim() !== '') {
         spinner();
         timeoutId = setTimeout(()=>{        
@@ -182,18 +181,15 @@ textSearch.addEventListener('input',(e)=>{
     updateSearchValue(e.target.value);
     console.log(searchValue)
 });
+//--------------fine aggiornamento digitazione--------------------
 
-//funzione per creare altre 10 card con load more
-
+//-------------funzione per creare altre 10 card----------------
 async function loadMoreSearchNews(){
         try{
     const responseSearch = await fetch(apiB + searchValue);
     const data = await responseSearch.json();
-    
-    const ten = data.hits.slice(numCardGenerated - 10, numCardGenerated);
-
-    console.log(ten);
-
+    const ten = slice(data.hits, numCardGenerated - 10, numCardGenerated);
+    //console.log(ten);
     for(const element of ten){
         createCardSearch(element.id,element.author,element.title,element.url,element.points,element.num_comments)
     }
@@ -201,8 +197,9 @@ async function loadMoreSearchNews(){
         console.log("errore nella ricerca card")
     }
 }
+//------------fine creazione altre notizie----------------
 
-//prova fetch con algolia
+//------------funzione cerca notizie - algolia ----------
 const apiBaseA = 'https://hn.algolia.com/api/v1/search?tags=story,author_'
 const apiBaseT = 'https://hn.algolia.com/api/v1/search?query='
 let apiB = apiBaseT
@@ -223,22 +220,19 @@ async function searchNews() {
     try{
     const responseSearch = await fetch(apiB + searchValue);
     const data = await responseSearch.json();
-    const ten = data.hits.slice(numCardGenerated - 10, numCardGenerated);
+    const ten = slice(data.hits, numCardGenerated - 10, numCardGenerated);
     parentSearch.innerHTML="";
     console.log(ten);
-    if(ten.length===0){
+    if(isEmpty(ten)){
         toastError.classList.add('show');
         setTimeout(()=>{
         toastError.classList.remove('show');},4000);
-        //azzera campo ricerca
         textSearch.value='';
     }
     for(const element of ten){
-        createCardSearch(element.id,element.author,element.title,element.url,element.points,element.num_comments);
+        createCardSearch(element.story_id,element.author,element.title,element.url,element.points,element.num_comments);
     }
     }catch{
         console.log("errore nella ricerca card")
-    }finally{
-        //spinnerElement.style.display = 'none';
     }
 }
