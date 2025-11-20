@@ -7,6 +7,7 @@ import { slice } from 'lodash';//'taglia' array a 10
 import { get } from 'lodash';//recupero dati e gestione errore
 import { isEmpty } from 'lodash';//controllo dati e gestione errore
 import { compact } from 'lodash';//esclusione valore false,null,0,undefined da array id
+import { difference } from 'lodash';
 
 //crea card per preferiti
 const parentFav = document.querySelector('.favorites')
@@ -102,10 +103,14 @@ function createCardFavorites(id,by,title,url,score,comm){
 //------------------fine parte rimozione--------------------------------------
 
 //-------------creazione card con dati salvati in local storage---------------
+//selezione dei nuovbi id salvati
 const apiFavorites = 'https://hacker-news.firebaseio.com/v0/item/';
 const favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
+const createdFavorites = JSON.parse(localStorage.getItem('created')) || [];
+const savedList = difference(favoritesArray, createdFavorites );
 console.log('id recuperati:',favoritesArray)
-
+console.log('id recuperati:',savedList)
+//funzione chiamata
 export async function loadFavorites(){
     const favoritesArray = JSON.parse(localStorage.getItem('favorites')) || [];
     const uniqueArray = [...new Set(favoritesArray)];
