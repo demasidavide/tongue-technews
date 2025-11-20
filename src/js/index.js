@@ -10,6 +10,9 @@ import '../styles/layout/favorites.css';
 import '../styles/layout/search.css';
 import '../styles/layout/topScore.css';
 
+//importo librerie lodash
+import uniq from 'lodash/uniq.js';
+
 //importo funzioni per salvare preferiti
 import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
 import { loadFavorites } from './favorites.js';
@@ -92,24 +95,19 @@ function createCard(id,by,title,url,score,comm){
                     }else if(e.target.closest('#heartIcon')){
                         const svgHeart = headerTop.querySelector('.heart')
                         svgHeart.classList.toggle('active');
-                        //ok
-                        console.log('ID corrente:', id);
+                        //console.log('ID corrente:', id);
                         let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || []; // Recupera preferiti o array vuoto
-                        console.log('Array iniziale:', favoritesArray);
+                        //console.log('Array iniziale:', favoritesArray);
                         
                         if(svgHeart.classList.contains('active')){
-                            if(!favoritesArray.includes(id)){
-
                                 favoritesArray.push(id);
+                                //--lodash--controllo id doppi
+                                favoritesArray=uniq(favoritesArray);
                                 saveFavoritesInStorage(favoritesArray);
-                                console.log('preferito salvato')
-                                
-                            }
+                                //console.log('preferito salvato')
                         }else{
-                               
                             favoritesArray = removeFavorites(id); 
-                            console.log('Rimosso:', favoritesArray);
-                           
+                            //console.log('Rimosso:', favoritesArray);
                             }
                     }
                     })
