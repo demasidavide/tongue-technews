@@ -105,7 +105,7 @@ function createCardSearch(id,by,title,url,score,comm){
                                 favoritesArray=uniq(favoritesArray);
                                 saveFavoritesInStorage(favoritesArray);
                                 console.log('preferito salvato1')
-                                
+                        //eliminata---mantengo per sicurezza        
                         //     if(!id){
                         //         const alert = document.querySelector('.alert-search')
                         //         alert.classList.remove('hide');
@@ -113,7 +113,7 @@ function createCardSearch(id,by,title,url,score,comm){
                         //             alert.classList.add('hide')
                         //         },2000);
                         //         favoritesArray = removeFavorites(id);
-
+                        //eliminata---mantengo per sicurezza        
                         // }
                             }else{
                              //favoritesArray = favoritesArray.filter(favId => favId !== id); 
@@ -179,7 +179,7 @@ function updateSearchValue(newValue){
 }
 textSearch.addEventListener('input',(e)=>{
     updateSearchValue(e.target.value);
-    console.log(searchValue)
+    //console.log(searchValue)
 });
 //--------------fine aggiornamento digitazione--------------------
 
