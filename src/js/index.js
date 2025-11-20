@@ -12,6 +12,10 @@ import '../styles/layout/topScore.css';
 
 //importo librerie lodash
 import uniq from 'lodash/uniq.js';
+import slice from 'lodash/slice.js';
+import get from 'lodash/get.js';
+import { isEmpty } from 'lodash';
+
 
 //importo funzioni per salvare preferiti
 import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
@@ -51,16 +55,24 @@ function createCard(id,by,title,url,score,comm){
 
                 parent.appendChild(card);
                 
-                //funzione per tradurre titolo
+//---------------------funzione per tradurre titolo-------------------
+                //recupero elementi
                 const btnTranslate = card.querySelector('.translate');
                 const titleElement = card.querySelector('.card-title a');
-                //const per scope globale
+                //uso const per scope globale
                 const translate = () => {
                       const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(title)}&langpair=en|it`;
                       fetch(url)
                       .then(response => response.json())
                       .then(data => {
-                      titleElement.textContent = data.responseData.translatedText;
+                        //--lodash--controllo array vuoto
+                        if(isEmpty(data)){
+                          console.error('Impossibile tradurre')
+                          return;
+                        }
+                        //--lodash--controllo di avere i dati, else gestione errore
+                        const txt = get(data, 'responseData.translatedText', 'Impossibile tradurre')
+                        titleElement.textContent = txt;
                       })
                       .catch(error => console.error("Errore:", error));
                       };
@@ -127,7 +139,7 @@ fetch(apiBase + 'newstories.json')
 .then(response=>response.json())
 .then(data=>{
   //slice per prendere solo le prime 10
-  const topten= data.slice(numCard -10,numCard);
+  const topten= slice(data,numCard -10,numCard);
   
   topten.forEach( element=> {
     //chiamata e creazione per ogni id
@@ -138,13 +150,12 @@ fetch(apiBase + 'newstories.json')
       //riporta l utente alla stessa posizione dopo il reload automatico della pagina di riga 71
       window.scrollTo(0,scrollPosition);
     })
-    .catch(error=>console.error('Errore,impossibile creare la Card'));
+    .catch(error=>console.error('Errore,impossibile creare la Card',error));
     });
   })
 .catch(error => {
         const alertNew = document.getElementById('alert-new')
         alertNew.classList.remove('visually-hidden');
-        console.log('Errore,impossibile procedere');
 });
 }
 
