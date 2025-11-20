@@ -2,6 +2,11 @@
 import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
 import { loadFavorites } from './favorites.js';
 
+//imorto librerie lodash
+import { isEmpty } from 'lodash';//controllo dati e gestione errore
+import { get } from 'lodash';//recupero dati e gestione errore
+
+
 //funzione per creare card-top
 const parentTop = document.querySelector('.carousel-container')
 function createCardTop(id,by,title,url,score,comm){
@@ -34,35 +39,42 @@ function createCardTop(id,by,title,url,score,comm){
                     </button>
                     <button type="button" class="btn btn-primary position-relative translate"><img src="./assets/img/translate.png" alt="traduci"></button>
                 </div>`
-
     parentTop.appendChild(cardTop);
 
-    //funzione per tradurre titolo
+//---------------------funzione per tradurre titolo-------------------
                 const btnTranslate = cardTop.querySelector('.translate');
                 const titleElement = cardTop.querySelector('.card-title a');
                 //const per scope globale
                 const translate = () => {
                       const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(title)}&langpair=en|it`;
-  
                       fetch(url)
                       .then(response => response.json())
                       .then(data => {
-                      titleElement.textContent = data.responseData.translatedText;
+                       //--lodash--controllo array vuoto
+                        if(isEmpty(data)){
+                        console.error('Impossibile tradurre')
+                        return;
+                        } 
+                      //--lodash--controllo di avere i dati, else gestione errore
+                        const txt = get(data, 'responseData.translatedText', 'Impossibile tradurre')
+                        titleElement.textContent = txt;
                       })
                       .catch(error => console.error("Errore:", error));
                       };
 
-                      // Desktop
+                      // Desktop, per tradurre all'hover del mouse
                       btnTranslate.addEventListener('mouseenter', translate);
                       btnTranslate.addEventListener('mouseleave', () => {
                       titleElement.textContent = title;
                       });
 
-                      // Mobile
+                      // Mobile, per tradurre alla pressione del pulsante
                       btnTranslate.addEventListener('touchstart', translate);
                       btnTranslate.addEventListener('touchend', () => {
                       titleElement.textContent = title;
                       })
+//----------------fine parte di traduzione titolo-----------------------------
+
                       //aggiunta LISTENER su card header per condividere la notizia e per preferito
                       const headerTop = cardTop.querySelector('.card-header')
                       headerTop.addEventListener('click',(e)=>{
