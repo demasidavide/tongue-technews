@@ -49,6 +49,6 @@ module.exports = {
         hot: true,
         static:path.resolve(__dirname,'dist')
     },
-    mode:'development'
+    mode:'production'
 };
 
