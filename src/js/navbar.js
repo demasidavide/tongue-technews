@@ -15,7 +15,7 @@ const title = document.querySelector('.title')
 //--------funzione per mostrare elementi della pagina principale--------------
 function newClick(){
     forEach(components, (item)=>{
-      item.style.display = 'block';
+      item.style.display = '';
       title.textContent = 'Le top News';
     })
   }
