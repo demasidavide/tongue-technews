@@ -172,7 +172,7 @@ fetch(apiBase + 'newstories.json')
         console.warn('Notizia scartata')
         return;
       }
-      console.log(dataitem)
+      
       createCard(dataitem, 'card', parent)
       
       //createCard(dataitem.id,dataitem.by,dataitem.title,dataitem.url,dataitem.score,dataitem.descendants);

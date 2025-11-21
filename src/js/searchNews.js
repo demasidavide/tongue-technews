@@ -65,7 +65,6 @@ function updateSearchValue(newValue){
 }
 textSearch.addEventListener('input',(e)=>{
     updateSearchValue(e.target.value);
-    //console.log(searchValue)
 });
 //--------------fine aggiornamento digitazione--------------------
 
@@ -78,7 +77,14 @@ async function loadMoreSearchNews(){
     console.log(ten);
     for(const element of ten){
         console.log(element)
-        createCardSearch(element, 'card-search', parentSearch)
+        createCard({
+            id:element.story_id,
+            by:element.author,
+            title:element.title,
+            url:element.url,
+            score:element.points,
+            descendants:element.num_comments
+        }, 'card-search', parentSearch)
     }
     }catch{
         console.log("errore nella ricerca card")
@@ -119,8 +125,11 @@ async function searchNews() {
         createCard({
             id:element.story_id,
             by:element.author,
-        })
-        //createCardSearch(element.story_id,element.author,element.title,element.url,element.points,element.num_comments);
+            title:element.title,
+            url:element.url,
+            score:element.points,
+            descendants:element.num_comments
+        }, 'card-search', parentSearch)
     }
     }catch{
         console.log("errore nella ricerca card")
