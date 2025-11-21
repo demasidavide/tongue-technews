@@ -8,7 +8,6 @@ import { uniq } from 'lodash';//per controllo valori doppi in array
 import { slice } from 'lodash';//slice di 10 id da array
 import { compact } from 'lodash';//esclusione valore false,null,0,undefined da array id
 
-
 //funzione per creare card-top
 const parentTop = document.querySelector('.carousel-container')
 function createCardTop(id,by,title,url,score,comm){
@@ -97,19 +96,15 @@ function createCardTop(id,by,title,url,score,comm){
                     }else if(e.target.closest('#heartIcon')){
                         const svgHeart = headerTop.querySelector('.heart')
                         svgHeart.classList.toggle('active');
-                        //console.log('ID corrente:', id);
                         let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || []; // Recupera preferiti o array vuoto
-                        //console.log('Array iniziale:', favoritesArray);
                         if(svgHeart.classList.contains('active')){
                                 favoritesArray.push(id);
                                 //--lodash--controllo id doppi
                                 favoritesArray=uniq(favoritesArray);
                                 saveFavoritesInStorage(favoritesArray);
-                                console.log('preferito salvato da top')
                             
                         }else{
                             favoritesArray = removeFavorites(id);  
-                            console.log('Rimosso da top:', favoritesArray);
                             }}
                     })
 }
@@ -140,7 +135,6 @@ async function topNews(){
             }
     }
     }catch(e){
-        console.log('card non create')
         const alertTop = document.getElementById('alert-top')
         alertTop.classList.remove('visually-hidden')
     }

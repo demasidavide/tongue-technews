@@ -96,30 +96,14 @@ function createCardSearch(id,by,title,url,score,comm){
                     }else if(e.target.closest('#heartIcon')){
                         const svgHeart = headerTop.querySelector('.heart')
                         svgHeart.classList.toggle('active');
-                        //console.log('ID corrente:', id);
                         let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || []; // Recupera preferiti o array vuoto
-                        //console.log('Array iniziale:', favoritesArray);
                         if(svgHeart.classList.contains('active')){
                                 favoritesArray.push(id);
                                 //--lodash--controllo id doppi
                                 favoritesArray=uniq(favoritesArray);
                                 saveFavoritesInStorage(favoritesArray);
-                                console.log('preferito salvato1')
-                        //eliminata---mantengo per sicurezza        
-                        //     if(!id){
-                        //         const alert = document.querySelector('.alert-search')
-                        //         alert.classList.remove('hide');
-                        //         setTimeout(()=>{
-                        //             alert.classList.add('hide')
-                        //         },2000);
-                        //         favoritesArray = removeFavorites(id);
-                        //eliminata---mantengo per sicurezza        
-                        // }
                             }else{
-                             //favoritesArray = favoritesArray.filter(favId => favId !== id); 
-                             //localStorage.setItem('favorites',JSON.stringify(favoritesArray));  
                             favoritesArray = removeFavorites(id); 
-                            console.log('Rimosso:', favoritesArray);
                             }
                     }
                 })
@@ -222,7 +206,6 @@ async function searchNews() {
     const data = await responseSearch.json();
     const ten = slice(data.hits, numCardGenerated - 10, numCardGenerated);
     parentSearch.innerHTML="";
-    console.log(ten);
     if(isEmpty(ten)){
         toastError.classList.add('show');
         setTimeout(()=>{

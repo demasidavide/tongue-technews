@@ -108,18 +108,14 @@ function createCard(id,by,title,url,score,comm){
                     }else if(e.target.closest('#heartIcon')){
                         const svgHeart = headerTop.querySelector('.heart')
                         svgHeart.classList.toggle('active');
-                        //console.log('ID corrente:', id);
                         let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || []; // Recupera preferiti o array vuoto
-                        //console.log('Array iniziale:', favoritesArray);
                         if(svgHeart.classList.contains('active')){
                                 favoritesArray.push(id);
                                 //--lodash--controllo id doppi
                                 favoritesArray=uniq(favoritesArray);
                                 saveFavoritesInStorage(favoritesArray);
-                                console.log('preferito salvato')
                         }else{
                             favoritesArray = removeFavorites(id); 
-                            //console.log('Rimosso:', favoritesArray);
                             }
                     }
                     })

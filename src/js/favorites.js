@@ -107,7 +107,6 @@ export async function loadFavorites(){
     const createdFavorites = JSON.parse(localStorage.getItem('created')) || [];
     const savedList = difference(favoritesArray, createdFavorites );
     if(isEmpty(savedList)){
-        console.log('array vuoto')
         return;
     }
     for(const id of savedList)
