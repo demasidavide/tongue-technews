@@ -1,4 +1,5 @@
 # tongue-technews
+
 Featured on Hacker News, one of the most influential tech communities worldwide
 
 <h1 align="left">Hi 👋! My name is Davide from &#x1f1ee;&#x1f1f9;🍕&#127837;🛵</h1>
@@ -7,6 +8,7 @@ Featured on Hacker News, one of the most influential tech communities worldwide
 <p align="left">I created a platform for getting tech news, divided into three different sections:</p>
 
 <br><img align="right" width="350" height="150" src="src/assets/img/top.PNG" alt="Top news" />
+
 <p align="left">1. Top-News<br>
 Here you can find the top 10 most 
 voted news on hacker news, scrollable horizontally</p>
@@ -28,7 +30,7 @@ voted news on hacker news, scrollable horizontally</p>
 
 <h2>A few more small features</h2>
 
--Instant translation of the title for my Italian friends      <img height="40" src="src/assets/img/translate.png">&#x1f1ee;&#x1f1f9;-&#x1f1ec;&#x1f1e7;
+-Instant translation of the title for my Italian friends <img height="40" src="src/assets/img/translate.png">&#x1f1ee;&#x1f1f9;-&#x1f1ec;&#x1f1e7;
 
 -Share the news on your favorite social networks <img src="src/assets/img/condividi-30-light.png">
 
@@ -45,15 +47,18 @@ voted news on hacker news, scrollable horizontally</p>
 ###
 
 <h2>THANK YOU!</h2>
-<h1>Try it: <a href="https://demasidavide.github.io/progetti/tongue/src">HERE</a></h1>
+<h1>Try it: <a href="https://demasidavide.github.io/progetti/tongue/dist/">HERE</a></h1>
 
 ## Future Improvements
+
 - [ ] Login
 - [ ] Database
 - [ ] Downloadable page for mobile
 
 ###
+
 ###
+
 <h3>Some of the languages ​​I use the most:</h3>
 
 <div align="left">
