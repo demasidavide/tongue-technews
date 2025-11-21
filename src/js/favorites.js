@@ -1,9 +1,7 @@
 //importo funzioni di rimozione favorito
-import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
 import { createCard } from './index.js';
 
 //importo librerie lodash
-import { get } from 'lodash';//recupero dati e gestione errore
 import { isEmpty } from 'lodash';//controllo dati e gestione errore
 import { difference } from 'lodash';
 

@@ -1,11 +1,8 @@
 //importa funzione per salvare id in localStorage
-import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
 import { createCard } from './index.js';
 
 //importo librerie lodash
 import { isEmpty } from 'lodash';//controllo dati e gestione errore
-import { get } from 'lodash';//recupero dati e gestione errore
-import { uniq } from 'lodash';//per controllo valori doppi in array
 import { slice } from 'lodash';//slice di 10 id da array
 import { compact } from 'lodash';//esclusione valore false,null,0,undefined da array id
 
@@ -32,7 +29,6 @@ async function topNews(){
                 return;
                 }
                 createCard(dataItem, 'card-top', parentTop, {showTop:true,share:true})
-                //createCardTop(dataItem.id,dataItem.by,dataItem.title,dataItem.url,dataItem.score,dataItem.descendants)
             }catch{
                 console.log('errore nel caricamento delle card')
             }

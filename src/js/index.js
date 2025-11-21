@@ -1,3 +1,4 @@
+//importo i file javascript
 import './favorites.js';
 import './navbar.js';
 import './searchNews.js';
@@ -21,10 +22,10 @@ import { compact } from 'lodash';//esclusione valore false,null,0,undefined da a
 import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
 //import { loadFavorites } from './favorites.js';
 
-//funzione per creare card univerasale
+//----------funzione per creare card univerasale utilizzato per tutte le sezioni in tutte le pagine-------------
 const parent = document.querySelector('.news');
-
 export function createCard(cardData,classStyle,position,options={}){
+  //opzioni per le diverse card da creare
   const {id,by,title,url,score,descendants}= cardData;
   const {
     showTop = false,
@@ -42,9 +43,10 @@ export function createCard(cardData,classStyle,position,options={}){
     const shareColor = share
     ? `./assets/img/condividi-30-dark.png`
     : `./assets/img/condividi-30-light.png`
-      
+  //fine opzioni perr le diverse card   
+
   const card = document.createElement('div');
-  card.className = classStyle;//'card';
+  card.className = classStyle;
   card.innerHTML= `<h5 class="card-header">By: ${cardData.by}
                     <svg id="heartIcon" viewBox="0 0 24 24" width="60" height="60">
                             <path class="${heartFill}" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09
@@ -177,10 +179,7 @@ fetch(apiBase + 'newstories.json')
         console.warn('Notizia scartata')
         return;
       }
-      
       createCard(dataitem, 'card', parent)
-      
-      //createCard(dataitem.id,dataitem.by,dataitem.title,dataitem.url,dataitem.score,dataitem.descendants);
       //riporta l utente alla stessa posizione dopo il reload automatico della pagina allo scadere del timer
       window.scrollTo(0,scrollPosition);
     })

@@ -1,12 +1,8 @@
 //importo funzioni per salvare preferiti
-import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
-import { loadFavorites } from './favorites.js';
 import { createCard } from './index.js';
 
 //importo librerie lodash
-import { uniq } from 'lodash';//per controllo valori doppi in array
 import { slice } from 'lodash';//'taglia' array a 10
-import { get } from 'lodash';//recupero dati e gestione errore
 import { isEmpty } from 'lodash';//controllo dati e gestione errore
 
 //creazione card per news ricercate
@@ -74,9 +70,7 @@ async function loadMoreSearchNews(){
     const responseSearch = await fetch(apiB + searchValue);
     const data = await responseSearch.json();
     const ten = slice(data.hits, numCardGenerated - 10, numCardGenerated);
-    console.log(ten);
     for(const element of ten){
-        console.log(element)
         createCard({
             id:element.story_id,
             by:element.author,
