@@ -1,6 +1,7 @@
 //importo funzioni per salvare preferiti
 import { removeFavorites, saveFavoritesInStorage } from './saveLoadfavorites.js';
 import { loadFavorites } from './favorites.js';
+import { createCard } from './index.js';
 
 //importo librerie lodash
 import { uniq } from 'lodash';//per controllo valori doppi in array
@@ -10,105 +11,6 @@ import { isEmpty } from 'lodash';//controllo dati e gestione errore
 
 //creazione card per news ricercate
 const parentSearch = document.querySelector('.container-card-search')
-function createCardSearch(id,by,title,url,score,comm){
-    const cardSearch = document.createElement('div')
-    cardSearch.className='card-search';
-    cardSearch.innerHTML=`
-                <h5 class="card-header">By: ${by}
-                <svg id="heartIcon" viewBox="0 0 24 24" width="60" height="60">
-                            <path class="heart" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09
-                                C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5 c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                            </svg>
-                <img src="./assets/img/condividi-30-dark.png" alt="simbolo condividi" class='share-search'>
-                </h5><br>
-                <div class="card-body">
-                    <h3 class="card-title"><a href="${url}" target=_blank>${title}</a></h3>
-                    <p class="card-text">${url}</p>
-                    <button type="button" class="btn btn-primary position-relative">
-                        Points
-                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
-                            ${score}
-                        </span>
-                    </button>
-                    <a href="https://news.ycombinator.com/item?id=${id}">
-                    <button type="button" class="btn btn-primary position-relative">
-                        comments
-                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
-                            ${comm}
-                        </span>
-                    </a>
-                    </button>
-                    <button type="button" class="btn btn-primary position-relative translate"><img src="./assets/img/translate.png" alt="traduci"></button>
-                </div>`
-    parentSearch.appendChild(cardSearch);
-
-//---------------------funzione per tradurre titolo-------------------
-                const btnTranslate = cardSearch.querySelector('.translate');
-                const titleElement = cardSearch.querySelector('.card-title a');
-                //uso const per scope globale
-                const translate = () => {
-                      const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(title)}&langpair=en|it`;
-                      fetch(url)
-                      .then(response => response.json())
-                      .then(data => {
-                        //--lodash--controllo array vuoto
-                        if(isEmpty(data)){
-                        console.error('Impossibile tradurre')
-                        return;
-                        }
-                      //--lodash--controllo di avere i dati, else gestione errore
-                        const txt = get(data, 'responseData.translatedText', 'Impossibile tradurre')
-                        titleElement.textContent = txt;
-                      })
-                      .catch(error => console.error("Errore:", error));
-                      };
-
-                      //Desktop, per tradurre titolo all'hover del mouse
-                      btnTranslate.addEventListener('mouseenter', translate);
-                      btnTranslate.addEventListener('mouseleave', () => {
-                      titleElement.textContent = title;
-                      });
-
-                      //Mobile, per tradurre titolo premendo sull'icona
-                      btnTranslate.addEventListener('touchstart', translate);
-                      btnTranslate.addEventListener('touchend', () => {
-                      titleElement.textContent = title;
-                      })
-//----------------fine parte di traduzione titolo-----------------------------
-
-//----------------funzione di condivisione------------------------------------
-                      //event delegation per condivisione e preferiti
-                      const headerTop = cardSearch.querySelector('.card-header')
-                      headerTop.addEventListener('click',(e)=>{
-                        if(e.target.classList.contains('share-search')){
-                        if(navigator.share){
-                          navigator.share({
-                            title: title,
-                            text: "Guarda questa News Tecnologica!",
-                            url: url
-                          })
-                        }else{
-                          console.log('errore nella condivisione')
-                        }
-//------------------fine parte per la condivisione delle notizie----------------
-
-//-----------------funzione per salvataggio in preferiti----------------------
-                    }else if(e.target.closest('#heartIcon')){
-                        const svgHeart = headerTop.querySelector('.heart')
-                        svgHeart.classList.toggle('active');
-                        let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || []; // Recupera preferiti o array vuoto
-                        if(svgHeart.classList.contains('active')){
-                                favoritesArray.push(id);
-                                //--lodash--controllo id doppi
-                                favoritesArray=uniq(favoritesArray);
-                                saveFavoritesInStorage(favoritesArray);
-                            }else{
-                            favoritesArray = removeFavorites(id); 
-                            }
-                    }
-                })
-}
-//-----------------fine parte salvataggio preferiti------------------------
 
 //-----------------funzione per creare bottone per caricare altre notizie----
 function createButtonMore(){
@@ -173,9 +75,10 @@ async function loadMoreSearchNews(){
     const responseSearch = await fetch(apiB + searchValue);
     const data = await responseSearch.json();
     const ten = slice(data.hits, numCardGenerated - 10, numCardGenerated);
-    //console.log(ten);
+    console.log(ten);
     for(const element of ten){
-        createCardSearch(element.id,element.author,element.title,element.url,element.points,element.num_comments)
+        console.log(element)
+        createCardSearch(element, 'card-search', parentSearch)
     }
     }catch{
         console.log("errore nella ricerca card")
@@ -213,7 +116,11 @@ async function searchNews() {
         textSearch.value='';
     }
     for(const element of ten){
-        createCardSearch(element.story_id,element.author,element.title,element.url,element.points,element.num_comments);
+        createCard({
+            id:element.story_id,
+            by:element.author,
+        })
+        //createCardSearch(element.story_id,element.author,element.title,element.url,element.points,element.num_comments);
     }
     }catch{
         console.log("errore nella ricerca card")

@@ -10,7 +10,7 @@ main{
             margin: 20px 0px 10px 0px;
             font-weight: bold;
         }
-    >.top-news{
+    >.top-news{ 
         background-image: url(../../assets/img/sfondotopc.webp);
         display: flex;
         flex-direction: row;
@@ -89,7 +89,7 @@ main{
                 }
             }
 
-                >.share-top{
+                >.share{
                 width:30px;
                 cursor: pointer;
             }
