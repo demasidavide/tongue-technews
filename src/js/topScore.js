@@ -31,7 +31,7 @@ async function topNews(){
                 console.warn('Notizia scartata')
                 return;
                 }
-                createCard(dataItem, 'card-top', parentTop, {showTop:true})
+                createCard(dataItem, 'card-top', parentTop, {showTop:true,share:true})
                 //createCardTop(dataItem.id,dataItem.by,dataItem.title,dataItem.url,dataItem.score,dataItem.descendants)
             }catch{
                 console.log('errore nel caricamento delle card')

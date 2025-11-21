@@ -84,7 +84,7 @@ async function loadMoreSearchNews(){
             url:element.url,
             score:element.points,
             descendants:element.num_comments
-        }, 'card-search', parentSearch)
+        }, 'card-search', parentSearch, {share:true})
     }
     }catch{
         console.log("errore nella ricerca card")
@@ -129,7 +129,7 @@ async function searchNews() {
             url:element.url,
             score:element.points,
             descendants:element.num_comments
-        }, 'card-search', parentSearch)
+        }, 'card-search', parentSearch, {share:true})
     }
     }catch{
         console.log("errore nella ricerca card")

@@ -28,21 +28,29 @@ export function createCard(cardData,classStyle,position,options={}){
   const {id,by,title,url,score,descendants}= cardData;
   const {
     showTop = false,
-    saveFun = true
+    saveFun = true,
+    heart = false,
+    share = false
   } = options;
 
-  const imgTopScore = showTop
+    const imgTopScore = showTop
     ? `<img src="./assets/img/garanzia-48.png" alt="coccarda top news">`
     : '';
+    const heartFill = heart
+    ? `active`
+    : `heart`;
+    const shareColor = share
+    ? `./assets/img/condividi-30-dark.png`
+    : `./assets/img/condividi-30-light.png`
       
   const card = document.createElement('div');
   card.className = classStyle;//'card';
   card.innerHTML= `<h5 class="card-header">By: ${cardData.by}
                     <svg id="heartIcon" viewBox="0 0 24 24" width="60" height="60">
-                            <path class="heart" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09
+                            <path class="${heartFill}" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09
                                 C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5 c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                             </svg>
-                    <img src="./assets/img/condividi-30-light.png" alt="simbolo condividi" class='share'>
+                    <img src="${shareColor}" alt="simbolo condividi" class='share'>
                     </h5>
                 <div class="card-body">
                     ${imgTopScore}
@@ -119,15 +127,12 @@ export function createCard(cardData,classStyle,position,options={}){
 
 //-----------------funzione per salvataggio in preferiti----------------------
                       if(e.target.closest('#heartIcon')){
-                        console.log('eventx')
                         if(saveFun) {
                              const svgHeart = headerTop.querySelector('.heart')
-                             console.log('premutox')
                              svgHeart.classList.toggle('active');
                         let favoritesArray = JSON.parse(localStorage.getItem('favorites')) || []; // Recupera preferiti o array vuoto
                         if(svgHeart.classList.contains('active')){
                                 favoritesArray.push(id);
-                                console.log('salvatox')
                                 //--lodash--controllo id doppi
                                 favoritesArray=uniq(favoritesArray);
                                 saveFavoritesInStorage(favoritesArray);
