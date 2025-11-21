@@ -116,7 +116,7 @@ function createCard(id,by,title,url,score,comm){
                                 //--lodash--controllo id doppi
                                 favoritesArray=uniq(favoritesArray);
                                 saveFavoritesInStorage(favoritesArray);
-                                //console.log('preferito salvato')
+                                console.log('preferito salvato')
                         }else{
                             favoritesArray = removeFavorites(id); 
                             //console.log('Rimosso:', favoritesArray);

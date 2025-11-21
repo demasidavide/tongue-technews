@@ -106,11 +106,11 @@ function createCardTop(id,by,title,url,score,comm){
                                 favoritesArray=uniq(favoritesArray);
                                 saveFavoritesInStorage(favoritesArray);
                                 console.log('preferito salvato da top')
-                            }
+                            
                         }else{
-                            favoritesArray = removeFavorites(id); 
+                            favoritesArray = removeFavorites(id);  
                             console.log('Rimosso da top:', favoritesArray);
-                            }
+                            }}
                     })
 }
 //-----------------fine parte salvataggio preferiti------------------------
